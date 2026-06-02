@@ -141,7 +141,7 @@ Authenticated founders only. Sign-up and sign-in via email/password or a support
 
 - **No business plan / narrative generation in v1.** Scoped down in Phase 3. Full-journey flow (fill → critique → business plan) is explicitly v2. Reason: reduces MVP scope to a shippable 3-week target.
 - **No team workspaces or multi-user collaboration.** Flat single-user model only. No shared editing, no comment threads, no org accounts. Reason: collaboration features add significant UX and data-model complexity before the core value is proven.
-- **No self-hosted or fine-tuned AI model.** AI capabilities are sourced externally — no custom model training and no self-hosted inference. Reason: model hosting is expensive and complex; out of scope for a first-time founder's after-hours MVP.
+- **No self-hosted or fine-tuned AI model.** AI capabilities are sourced externally via an OpenAI-compatible SDK pointed at either **OpenRouter** (`openrouter.ai/api/v1`, multi-model gateway) or **OpenAI directly** (`api.openai.com/v1`). The active backend is controlled by the `AI_PROVIDER` env var — no code changes needed to switch. No custom model training, no self-hosted inference. Reason: model hosting is expensive and complex; this two-backend setup enables model testing while keeping the integration surface minimal.
 - **No mobile-native app.** Web app only. A responsive layout may work on mobile browsers but there is no dedicated iOS or Android build. Reason: native apps require separate build/deploy pipelines and are out of scope for the July 1st deadline.
 
 ## Open Questions

@@ -13,11 +13,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  adapter: cloudflare(),
+  adapter: cloudflare({ imageService: "passthrough" }),
   env: {
     schema: {
       SUPABASE_URL: envField.string({ context: "server", access: "secret", optional: true }),
       SUPABASE_KEY: envField.string({ context: "server", access: "secret", optional: true }),
+      AI_PROVIDER: envField.string({ context: "server", access: "secret", optional: true }),
+      OPENROUTER_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
     },
   },
 });
