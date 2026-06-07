@@ -222,9 +222,9 @@ This is the first migration in the project. `supabase/migrations/` was empty; th
 
 #### Automated
 
-- [x] 2.1 Build passes with types file: `npm run build` exits 0
-- [x] 2.2 Lint passes: `npm run lint` exits 0
+- [x] 2.1 Build passes with types file: `npm run build` exits 0 — 395a0c1
+- [x] 2.2 Lint passes: `npm run lint` exits 0 — 395a0c1
 
 #### Manual
 
-- [x] 2.3 `Canvas` and `ShareLink` types importable from `@/types` without TS errors
+- [x] 2.3 `Canvas` and `ShareLink` types importable from `@/types` without TS errors — 395a0c1
