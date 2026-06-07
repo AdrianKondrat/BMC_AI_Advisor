@@ -93,6 +93,10 @@ CREATE POLICY "owners can delete own share_links"
   USING (canvas_id IN (SELECT id FROM canvases WHERE owner_id = auth.uid()));
 
 -- share_links policy (anon role — S-04 stub: read valid/non-expired links)
+-- ACCEPTED RISK: this policy exposes the token and pin_hash columns to unauthenticated
+-- callers. RLS cannot restrict columns, only rows. Accepted because no real data exists
+-- before S-04, which will replace this stub with an application-layer token-validation
+-- endpoint that never returns these columns to the client.
 CREATE POLICY "public can read valid share_links"
   ON share_links FOR SELECT
   TO anon

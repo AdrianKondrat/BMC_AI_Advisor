@@ -1,3 +1,5 @@
+import type { Tables } from "@/lib/database.types";
+
 export type BMCBlockKey =
   | "key_partners"
   | "key_activities"
@@ -11,20 +13,11 @@ export type BMCBlockKey =
 
 export type CanvasBlocks = Record<BMCBlockKey, string>;
 
-export interface Canvas {
-  id: string;
-  owner_id: string;
-  name: string | null;
+// Canvas row with blocks narrowed from Json to the BMC domain shape.
+// The DB column is jsonb (typed as Json in the generated types); we narrow
+// it here so downstream code gets compile-time BMC key checking.
+export type Canvas = Omit<Tables<"canvases">, "blocks"> & {
   blocks: Partial<CanvasBlocks>;
-  created_at: string;
-  updated_at: string;
-}
+};
 
-export interface ShareLink {
-  id: string;
-  canvas_id: string;
-  token: string;
-  expires_at: string | null;
-  pin_hash: string | null;
-  created_at: string;
-}
+export type ShareLink = Tables<"share_links">;
