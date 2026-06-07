@@ -207,24 +207,24 @@ This is the first migration in the project. `supabase/migrations/` was empty; th
 
 #### Automated
 
-- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0
-- [x] 1.2 No pending diff after reset: `npx supabase db diff` is clean
-- [x] 1.3 Build passes: `npm run build` exits 0
-- [x] 1.4 Lint passes: `npm run lint` exits 0
+- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0 — 49c0303
+- [x] 1.2 No pending diff after reset: `npx supabase db diff` is clean — 49c0303
+- [x] 1.3 Build passes: `npm run build` exits 0 — 49c0303
+- [x] 1.4 Lint passes: `npm run lint` exits 0 — 49c0303
 
 #### Manual
 
-- [x] 1.5 Both tables visible in Supabase Studio Table Editor with correct columns
-- [x] 1.6 RLS enabled on both tables; all 9 policies listed in Auth → Policies
-- [x] 1.7 Cross-user INSERT into `canvases` rejected by RLS
+- [x] 1.5 Both tables visible in Supabase Studio Table Editor with correct columns — 49c0303
+- [x] 1.6 RLS enabled on both tables; all 9 policies listed in Auth → Policies — 49c0303
+- [x] 1.7 Cross-user INSERT into `canvases` rejected by RLS — 49c0303
 
 ### Phase 2: TypeScript Types
 
 #### Automated
 
-- [ ] 2.1 Build passes with types file: `npm run build` exits 0
-- [ ] 2.2 Lint passes: `npm run lint` exits 0
+- [x] 2.1 Build passes with types file: `npm run build` exits 0
+- [x] 2.2 Lint passes: `npm run lint` exits 0
 
 #### Manual
 
-- [ ] 2.3 `Canvas` and `ShareLink` types importable from `@/types` without TS errors
+- [x] 2.3 `Canvas` and `ShareLink` types importable from `@/types` without TS errors
