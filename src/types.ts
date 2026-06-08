@@ -21,3 +21,5 @@ export type Canvas = Omit<Tables<"canvases">, "blocks"> & {
 };
 
 export type ShareLink = Tables<"share_links">;
+
+export type CanvasSummary = Pick<Tables<"canvases">, "id" | "name" | "created_at" | "updated_at">;

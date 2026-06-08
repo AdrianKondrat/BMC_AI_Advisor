@@ -208,42 +208,42 @@ Update `dashboard.astro` to fetch the user's canvases server-side and mount `Can
 
 #### Automated
 
-- [x] 1.1 TypeScript build passes
-- [x] 1.2 Lint passes
+- [x] 1.1 TypeScript build passes — 2801dfb
+- [x] 1.2 Lint passes — 2801dfb
 
 #### Manual
 
-- [x] 1.3 Authenticated DELETE of own canvas returns 204 and row is gone
-- [x] 1.4 DELETE with invalid UUID returns 400
-- [x] 1.5 Unauthenticated DELETE returns 401
-- [x] 1.6 DELETE of another user's canvas returns 204 but does not delete the row
+- [x] 1.3 Authenticated DELETE of own canvas returns 204 and row is gone — 2801dfb
+- [x] 1.4 DELETE with invalid UUID returns 400 — 2801dfb
+- [x] 1.5 Unauthenticated DELETE returns 401 — 2801dfb
+- [x] 1.6 DELETE of another user's canvas returns 204 but does not delete the row — 2801dfb
 
 ### Phase 2: CanvasList React Component
 
 #### Automated
 
-- [ ] 2.1 TypeScript build passes
-- [ ] 2.2 Lint passes
+- [x] 2.1 TypeScript build passes
+- [x] 2.2 Lint passes
 
 #### Manual
 
-- [ ] 2.3 List renders with canvas names and creation dates
-- [ ] 2.4 Null-name canvas shows "Untitled canvas"
-- [ ] 2.5 Cancel on AlertDialog does not remove the row
-- [ ] 2.6 Confirming delete removes row without page reload
-- [ ] 2.7 Deleting last canvas shows empty state
-- [ ] 2.8 "Create your first canvas" button is disabled
+- [x] 2.3 List renders with canvas names and creation dates
+- [x] 2.4 Null-name canvas shows "Untitled canvas"
+- [x] 2.5 Cancel on AlertDialog does not remove the row
+- [x] 2.6 Confirming delete removes row without page reload
+- [x] 2.7 Deleting last canvas shows empty state
+- [x] 2.8 "Create your first canvas" button is disabled
 
 ### Phase 3: Dashboard Page Wiring
 
 #### Automated
 
-- [ ] 3.1 TypeScript build passes
-- [ ] 3.2 Lint passes
+- [x] 3.1 TypeScript build passes
+- [x] 3.2 Lint passes
 
 #### Manual
 
-- [ ] 3.3 /dashboard renders canvas list or empty state
-- [ ] 3.4 User email and sign-out visible in header
-- [ ] 3.5 End-to-end delete flow works in browser
-- [ ] 3.6 Unauthenticated visit redirects to /auth/signin
+- [x] 3.3 /dashboard renders canvas list or empty state
+- [x] 3.4 User email and sign-out visible in header
+- [x] 3.5 End-to-end delete flow works in browser
+- [x] 3.6 Unauthenticated visit redirects to /auth/signin
