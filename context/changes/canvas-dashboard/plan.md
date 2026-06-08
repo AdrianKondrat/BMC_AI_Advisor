@@ -222,17 +222,17 @@ Update `dashboard.astro` to fetch the user's canvases server-side and mount `Can
 
 #### Automated
 
-- [x] 2.1 TypeScript build passes
-- [x] 2.2 Lint passes
+- [x] 2.1 TypeScript build passes — 94c0a78
+- [x] 2.2 Lint passes — 94c0a78
 
 #### Manual
 
-- [x] 2.3 List renders with canvas names and creation dates
-- [x] 2.4 Null-name canvas shows "Untitled canvas"
-- [x] 2.5 Cancel on AlertDialog does not remove the row
-- [x] 2.6 Confirming delete removes row without page reload
-- [x] 2.7 Deleting last canvas shows empty state
-- [x] 2.8 "Create your first canvas" button is disabled
+- [x] 2.3 List renders with canvas names and creation dates — 94c0a78
+- [x] 2.4 Null-name canvas shows "Untitled canvas" — 94c0a78
+- [x] 2.5 Cancel on AlertDialog does not remove the row — 94c0a78
+- [x] 2.6 Confirming delete removes row without page reload — 94c0a78
+- [x] 2.7 Deleting last canvas shows empty state — 94c0a78
+- [x] 2.8 "Create your first canvas" button is disabled — 94c0a78
 
 ### Phase 3: Dashboard Page Wiring
 
