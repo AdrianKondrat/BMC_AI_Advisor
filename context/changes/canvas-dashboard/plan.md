@@ -238,12 +238,12 @@ Update `dashboard.astro` to fetch the user's canvases server-side and mount `Can
 
 #### Automated
 
-- [x] 3.1 TypeScript build passes
-- [x] 3.2 Lint passes
+- [x] 3.1 TypeScript build passes — 043ff95
+- [x] 3.2 Lint passes — 043ff95
 
 #### Manual
 
-- [x] 3.3 /dashboard renders canvas list or empty state
-- [x] 3.4 User email and sign-out visible in header
-- [x] 3.5 End-to-end delete flow works in browser
-- [x] 3.6 Unauthenticated visit redirects to /auth/signin
+- [x] 3.3 /dashboard renders canvas list or empty state — 043ff95
+- [x] 3.4 User email and sign-out visible in header — 043ff95
+- [x] 3.5 End-to-end delete flow works in browser — 043ff95
+- [x] 3.6 Unauthenticated visit redirects to /auth/signin — 043ff95
