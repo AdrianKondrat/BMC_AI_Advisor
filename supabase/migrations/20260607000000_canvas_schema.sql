@@ -19,7 +19,7 @@ CREATE TABLE canvases (
 CREATE TABLE share_links (
   id         uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
   canvas_id  uuid        NOT NULL REFERENCES canvases(id) ON DELETE CASCADE,
-  token      text        NOT NULL UNIQUE DEFAULT encode(gen_random_bytes(32), 'hex'),
+  token      text        NOT NULL UNIQUE DEFAULT encode(extensions.gen_random_bytes(32), 'hex'),
   expires_at timestamptz,
   pin_hash   text,
   created_at timestamptz NOT NULL DEFAULT now()
