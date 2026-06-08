@@ -50,7 +50,7 @@ export default function CanvasList({ canvases: initial }: Props) {
           className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-5 py-4"
         >
           <div>
-            <p className="font-medium text-white">{canvas.name || "Untitled canvas"}</p>
+            <p className="font-medium text-white">{canvas.name ?? "Untitled canvas"}</p>
             <p className="mt-0.5 text-sm text-white/50">{new Date(canvas.created_at).toLocaleDateString()}</p>
           </div>
           <AlertDialog>

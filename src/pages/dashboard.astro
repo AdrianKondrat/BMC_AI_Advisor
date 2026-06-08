@@ -9,10 +9,12 @@ const supabase = createClient(Astro.request.headers, Astro.cookies);
 
 let canvases: CanvasSummary[] = [];
 if (supabase) {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("canvases")
     .select("id, name, created_at, updated_at")
+    .eq("owner_id", user.id)
     .order("created_at", { ascending: false });
+  if (error) console.error("[dashboard] canvases query failed:", error.message);
   canvases = data ?? [];
 }
 ---

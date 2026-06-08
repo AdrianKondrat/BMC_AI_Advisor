@@ -20,16 +20,7 @@ export const DELETE: APIRoute = async (context) => {
     return new Response(null, { status: 500 });
   }
 
-  await supabase.auth.getSession();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return new Response(null, { status: 401 });
-  }
-
-  const { error } = await supabase.from("canvases").delete().eq("id", id).eq("owner_id", user.id);
+  const { error } = await supabase.from("canvases").delete().eq("id", id).eq("owner_id", context.locals.user.id);
 
   if (error) {
     return new Response(null, { status: 500 });
