@@ -385,28 +385,28 @@ AI generation will take 5–15 s. The `NewCanvasForm` loading state is the only 
 
 #### Automated
 
-- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0
-- [x] 1.2 Build passes: `npm run build` exits 0
-- [x] 1.3 Lint passes: `npm run lint` exits 0
+- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0 — c8acbaf
+- [x] 1.2 Build passes: `npm run build` exits 0 — c8acbaf
+- [x] 1.3 Lint passes: `npm run lint` exits 0 — c8acbaf
 
 #### Manual
 
-- [x] 1.4 `canvases` table shows `idea` column in Supabase Studio
-- [x] 1.5 Existing canvas rows still appear without error
+- [x] 1.4 `canvases` table shows `idea` column in Supabase Studio — c8acbaf
+- [x] 1.5 Existing canvas rows still appear without error — c8acbaf
 
 ### Phase 2: POST /api/canvases
 
 #### Automated
 
-- [ ] 2.1 Build passes: `npm run build`
-- [ ] 2.2 Lint passes: `npm run lint`
+- [x] 2.1 Build passes: `npm run build`
+- [x] 2.2 Lint passes: `npm run lint`
 
 #### Manual
 
-- [ ] 2.3 Authenticated POST returns 201 with canvas row in Supabase Studio (name, blocks, idea populated)
-- [ ] 2.4 Unauthenticated POST returns 401
-- [ ] 2.5 POST with idea < 10 chars returns 400
-- [ ] 2.6 POST with invalid body returns 400
+- [x] 2.3 Authenticated POST returns 201 with canvas row in Supabase Studio (name, blocks, idea populated)
+- [x] 2.4 Unauthenticated POST returns 401
+- [x] 2.5 POST with idea < 10 chars returns 400
+- [x] 2.6 POST with invalid body returns 400
 
 ### Phase 3: PATCH /api/canvases/[id]
 
