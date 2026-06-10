@@ -412,42 +412,42 @@ AI generation will take 5–15 s. The `NewCanvasForm` loading state is the only 
 
 #### Automated
 
-- [x] 3.1 Build passes: `npm run build`
-- [x] 3.2 Lint passes: `npm run lint`
+- [x] 3.1 Build passes: `npm run build` — 2cdb891
+- [x] 3.2 Lint passes: `npm run lint` — 2cdb891
 
 #### Manual
 
-- [x] 3.3 Authenticated PATCH updates canvas blocks in Supabase Studio and returns 200
-- [x] 3.4 PATCH with another user's canvas ID returns 404
-- [x] 3.5 PATCH with invalid UUID returns 400
-- [x] 3.6 Unauthenticated PATCH returns 401
+- [x] 3.3 Authenticated PATCH updates canvas blocks in Supabase Studio and returns 200 — 2cdb891
+- [x] 3.4 PATCH with another user's canvas ID returns 404 — 2cdb891
+- [x] 3.5 PATCH with invalid UUID returns 400 — 2cdb891
+- [x] 3.6 Unauthenticated PATCH returns 401 — 2cdb891
 
 ### Phase 4: React Components
 
 #### Automated
 
-- [ ] 4.1 Build passes: `npm run build`
-- [ ] 4.2 Lint passes: `npm run lint`
+- [x] 4.1 Build passes: `npm run build`
+- [x] 4.2 Lint passes: `npm run lint`
 
 #### Manual
 
-- [ ] 4.3 NewCanvasForm renders; Generate button triggers loading state
-- [ ] 4.4 NewCanvasForm: error state shows message with idea text preserved; retry works
-- [ ] 4.5 CanvasEditor: all 9 blocks visible in BMC grid layout
-- [ ] 4.6 Block click activates inline textarea with existing content
-- [ ] 4.7 Blur triggers PATCH and "Saved ✓" appears
+- [x] 4.3 NewCanvasForm renders; Generate button triggers loading state
+- [x] 4.4 NewCanvasForm: error state shows message with idea text preserved; retry works
+- [x] 4.5 CanvasEditor: all 9 blocks visible in BMC grid layout
+- [x] 4.6 Block click activates inline textarea with existing content
+- [x] 4.7 Blur triggers PATCH and "Saved ✓" appears
 
 ### Phase 5: Pages & Wiring
 
 #### Automated
 
-- [ ] 5.1 Build passes: `npm run build`
-- [ ] 5.2 Lint passes: `npm run lint`
+- [x] 5.1 Build passes: `npm run build`
+- [x] 5.2 Lint passes: `npm run lint`
 
 #### Manual
 
-- [ ] 5.3 `/canvas/new` loads form; unauthenticated visit redirects to `/auth/signin`
-- [ ] 5.4 `/canvas/[id]` loads correct canvas; wrong-owner ID redirects to `/dashboard`
-- [ ] 5.5 Dashboard canvas rows have working "Open" links
-- [ ] 5.6 Empty-state CTA links to `/canvas/new`
-- [ ] 5.7 Full end-to-end: idea → generate → editor → edit → persist across refresh
+- [x] 5.3 `/canvas/new` loads form; unauthenticated visit redirects to `/auth/signin`
+- [x] 5.4 `/canvas/[id]` loads correct canvas; wrong-owner ID redirects to `/dashboard`
+- [x] 5.5 Dashboard canvas rows have working "Open" links
+- [x] 5.6 Empty-state CTA links to `/canvas/new`
+- [x] 5.7 Full end-to-end: idea → generate → editor → edit → persist across refresh
