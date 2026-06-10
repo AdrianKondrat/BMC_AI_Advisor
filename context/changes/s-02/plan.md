@@ -398,29 +398,29 @@ AI generation will take 5–15 s. The `NewCanvasForm` loading state is the only 
 
 #### Automated
 
-- [x] 2.1 Build passes: `npm run build`
-- [x] 2.2 Lint passes: `npm run lint`
+- [x] 2.1 Build passes: `npm run build` — c727f46
+- [x] 2.2 Lint passes: `npm run lint` — c727f46
 
 #### Manual
 
-- [x] 2.3 Authenticated POST returns 201 with canvas row in Supabase Studio (name, blocks, idea populated)
-- [x] 2.4 Unauthenticated POST returns 401
-- [x] 2.5 POST with idea < 10 chars returns 400
-- [x] 2.6 POST with invalid body returns 400
+- [x] 2.3 Authenticated POST returns 201 with canvas row in Supabase Studio (name, blocks, idea populated) — c727f46
+- [x] 2.4 Unauthenticated POST returns 401 — c727f46
+- [x] 2.5 POST with idea < 10 chars returns 400 — c727f46
+- [x] 2.6 POST with invalid body returns 400 — c727f46
 
 ### Phase 3: PATCH /api/canvases/[id]
 
 #### Automated
 
-- [ ] 3.1 Build passes: `npm run build`
-- [ ] 3.2 Lint passes: `npm run lint`
+- [x] 3.1 Build passes: `npm run build`
+- [x] 3.2 Lint passes: `npm run lint`
 
 #### Manual
 
-- [ ] 3.3 Authenticated PATCH updates canvas blocks in Supabase Studio and returns 200
-- [ ] 3.4 PATCH with another user's canvas ID returns 404
-- [ ] 3.5 PATCH with invalid UUID returns 400
-- [ ] 3.6 Unauthenticated PATCH returns 401
+- [x] 3.3 Authenticated PATCH updates canvas blocks in Supabase Studio and returns 200
+- [x] 3.4 PATCH with another user's canvas ID returns 404
+- [x] 3.5 PATCH with invalid UUID returns 400
+- [x] 3.6 Unauthenticated PATCH returns 401
 
 ### Phase 4: React Components
 
