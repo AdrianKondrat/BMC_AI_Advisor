@@ -441,13 +441,13 @@ AI generation will take 5–15 s. The `NewCanvasForm` loading state is the only 
 
 #### Automated
 
-- [x] 5.1 Build passes: `npm run build`
-- [x] 5.2 Lint passes: `npm run lint`
+- [x] 5.1 Build passes: `npm run build` — 3857270
+- [x] 5.2 Lint passes: `npm run lint` — 3857270
 
 #### Manual
 
-- [x] 5.3 `/canvas/new` loads form; unauthenticated visit redirects to `/auth/signin`
-- [x] 5.4 `/canvas/[id]` loads correct canvas; wrong-owner ID redirects to `/dashboard`
-- [x] 5.5 Dashboard canvas rows have working "Open" links
-- [x] 5.6 Empty-state CTA links to `/canvas/new`
-- [x] 5.7 Full end-to-end: idea → generate → editor → edit → persist across refresh
+- [x] 5.3 `/canvas/new` loads form; unauthenticated visit redirects to `/auth/signin` — 3857270
+- [x] 5.4 `/canvas/[id]` loads correct canvas; wrong-owner ID redirects to `/dashboard` — 3857270
+- [x] 5.5 Dashboard canvas rows have working "Open" links — 3857270
+- [x] 5.6 Empty-state CTA links to `/canvas/new` — 3857270
+- [x] 5.7 Full end-to-end: idea → generate → editor → edit → persist across refresh — 3857270

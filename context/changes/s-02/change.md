@@ -1,9 +1,9 @@
 ---
 change_id: s-02
 title: AI-generated BMC fill with block editing and auto-save
-status: implementing
+status: implemented
 created: 2026-06-09
-updated: 2026-06-10
+updated: 2026-06-11
 archived_at: null
 ---
 
