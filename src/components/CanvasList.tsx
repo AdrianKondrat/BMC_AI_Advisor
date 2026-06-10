@@ -36,13 +36,20 @@ export default function CanvasList({ canvases: initial }: Props) {
       <div className="flex flex-col items-center gap-4 py-16 text-center text-white/70">
         <span className="text-5xl">🗂️</span>
         <h2 className="text-xl font-semibold text-white">No canvases yet</h2>
-        <Button disabled>Create your first canvas</Button>
+        <Button asChild>
+          <a href="/canvas/new">Create your first canvas</a>
+        </Button>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col gap-3">
+      <div className="flex justify-end">
+        <Button asChild size="sm">
+          <a href="/canvas/new">New Canvas</a>
+        </Button>
+      </div>
       {error && <p className="rounded-md bg-red-500/20 px-4 py-2 text-sm text-red-300">{error}</p>}
       {canvases.map((canvas) => (
         <div
@@ -53,25 +60,30 @@ export default function CanvasList({ canvases: initial }: Props) {
             <p className="font-medium text-white">{canvas.name ?? "Untitled canvas"}</p>
             <p className="mt-0.5 text-sm text-white/50">{new Date(canvas.created_at).toLocaleDateString()}</p>
           </div>
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="destructive" size="sm">
-                Delete
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Delete canvas?</AlertDialogTitle>
-                <AlertDialogDescription>Are you sure? This cannot be undone.</AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction variant="destructive" onClick={() => handleDelete(canvas.id)}>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="secondary" size="sm">
+              <a href={"/canvas/" + canvas.id}>Open</a>
+            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">
                   Delete
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete canvas?</AlertDialogTitle>
+                  <AlertDialogDescription>Are you sure? This cannot be undone.</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction variant="destructive" onClick={() => handleDelete(canvas.id)}>
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </div>
       ))}
     </div>

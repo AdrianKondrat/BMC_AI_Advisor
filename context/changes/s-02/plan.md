@@ -426,16 +426,16 @@ AI generation will take 5–15 s. The `NewCanvasForm` loading state is the only 
 
 #### Automated
 
-- [x] 4.1 Build passes: `npm run build`
-- [x] 4.2 Lint passes: `npm run lint`
+- [x] 4.1 Build passes: `npm run build` — 61fcea6
+- [x] 4.2 Lint passes: `npm run lint` — 61fcea6
 
 #### Manual
 
-- [x] 4.3 NewCanvasForm renders; Generate button triggers loading state
-- [x] 4.4 NewCanvasForm: error state shows message with idea text preserved; retry works
-- [x] 4.5 CanvasEditor: all 9 blocks visible in BMC grid layout
-- [x] 4.6 Block click activates inline textarea with existing content
-- [x] 4.7 Blur triggers PATCH and "Saved ✓" appears
+- [x] 4.3 NewCanvasForm renders; Generate button triggers loading state — 61fcea6
+- [x] 4.4 NewCanvasForm: error state shows message with idea text preserved; retry works — 61fcea6
+- [x] 4.5 CanvasEditor: all 9 blocks visible in BMC grid layout — 61fcea6
+- [x] 4.6 Block click activates inline textarea with existing content — 61fcea6
+- [x] 4.7 Blur triggers PATCH and "Saved ✓" appears — 61fcea6
 
 ### Phase 5: Pages & Wiring
 
