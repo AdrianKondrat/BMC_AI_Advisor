@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { BMCBlockKey, Canvas, CanvasBlocks } from "@/types";
+import type { BlockCritique, BMCBlockKey, Canvas, CanvasCritique, CanvasBlocks } from "@/types";
 import { cn } from "@/lib/utils";
 
 const BMC_BLOCK_LABELS: Record<BMCBlockKey, string> = {
@@ -31,6 +31,13 @@ function initBlocks(partial: Partial<CanvasBlocks>): CanvasBlocks {
 }
 
 type SaveStatus = "idle" | "saving" | "saved" | "error";
+type CritiqueStatus = "idle" | "loading" | "error";
+
+const CATEGORY_STYLES: Record<BlockCritique["category"], string> = {
+  consistency: "bg-yellow-500/20 text-yellow-300",
+  completeness: "bg-blue-500/20 text-blue-300",
+  investor: "bg-orange-500/20 text-orange-300",
+};
 
 interface Props {
   canvas: Canvas;
@@ -43,10 +50,11 @@ interface BlockCellProps {
   onClick: () => void;
   onChange: (value: string) => void;
   onBlur: () => void;
+  critique?: BlockCritique;
   className?: string;
 }
 
-function BlockCell({ blockKey, content, isActive, onClick, onChange, onBlur, className }: BlockCellProps) {
+function BlockCell({ blockKey, content, isActive, onClick, onChange, onBlur, critique, className }: BlockCellProps) {
   return (
     <div
       className={cn(
@@ -76,6 +84,19 @@ function BlockCell({ blockKey, content, isActive, onClick, onChange, onBlur, cla
       ) : (
         <p className="text-sm text-white/30 italic">Click to add…</p>
       )}
+      {!isActive && critique && (
+        <div className="mt-2 border-t border-white/10 pt-2">
+          <span
+            className={cn(
+              "inline-block rounded px-1.5 py-0.5 text-[10px] font-medium",
+              CATEGORY_STYLES[critique.category],
+            )}
+          >
+            {critique.category}
+          </span>
+          <p className="mt-1 text-xs text-white/60">{critique.text}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -84,6 +105,8 @@ export default function CanvasEditor({ canvas }: Props) {
   const [blocks, setBlocks] = useState<CanvasBlocks>(() => initBlocks(canvas.blocks));
   const [activeBlock, setActiveBlock] = useState<BMCBlockKey | null>(null);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
+  const [critique, setCritique] = useState<CanvasCritique | null>(canvas.critique ?? null);
+  const [critiqueStatus, setCritiqueStatus] = useState<CritiqueStatus>("idle");
   const blocksRef = useRef(blocks);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -109,6 +132,21 @@ export default function CanvasEditor({ canvas }: Props) {
     }, 2000);
   }
 
+  async function runCritique() {
+    setCritiqueStatus("loading");
+    try {
+      const res = await fetch(`/api/canvases/${canvas.id}/critique`, { method: "POST" });
+      if (res.ok) {
+        setCritique((await res.json()) as CanvasCritique);
+        setCritiqueStatus("idle");
+      } else {
+        setCritiqueStatus("error");
+      }
+    } catch {
+      setCritiqueStatus("error");
+    }
+  }
+
   function handleBlockChange(key: BMCBlockKey, value: string) {
     setBlocks((prev) => ({ ...prev, [key]: value }));
   }
@@ -127,15 +165,30 @@ export default function CanvasEditor({ canvas }: Props) {
           ? "Error saving"
           : null;
 
+  const critiqueButtonLabel =
+    critiqueStatus === "loading" ? "Analysing…" : critique ? "Re-run Critique" : "Run Critique";
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold text-white">{canvas.name ?? "Untitled canvas"}</h1>
-        {statusText && (
-          <span className={cn("text-sm", saveStatus === "error" ? "text-red-400" : "text-green-400")}>
-            {statusText}
-          </span>
-        )}
+        <div className="flex items-center gap-3">
+          {statusText && (
+            <span className={cn("text-sm", saveStatus === "error" ? "text-red-400" : "text-green-400")}>
+              {statusText}
+            </span>
+          )}
+          {critiqueStatus === "error" && <span className="text-sm text-red-400">Critique failed — try again</span>}
+          <button
+            onClick={() => {
+              void runCritique();
+            }}
+            disabled={critiqueStatus === "loading"}
+            className="rounded-md bg-white/10 px-3 py-1.5 text-sm text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {critiqueButtonLabel}
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-5 md:grid-rows-3">
@@ -150,6 +203,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("key_partners", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.key_partners}
           className="md:col-start-1 md:row-span-2 md:row-start-1"
         />
         <BlockCell
@@ -163,6 +217,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("key_activities", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.key_activities}
           className="md:col-start-2 md:row-start-1"
         />
         <BlockCell
@@ -176,6 +231,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("value_propositions", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.value_propositions}
           className="md:col-start-3 md:row-span-2 md:row-start-1"
         />
         <BlockCell
@@ -189,6 +245,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("customer_relationships", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.customer_relationships}
           className="md:col-start-4 md:row-start-1"
         />
         <BlockCell
@@ -202,6 +259,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("customer_segments", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.customer_segments}
           className="md:col-start-5 md:row-span-2 md:row-start-1"
         />
         <BlockCell
@@ -215,6 +273,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("key_resources", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.key_resources}
           className="md:col-start-2 md:row-start-2"
         />
         <BlockCell
@@ -228,6 +287,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("channels", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.channels}
           className="md:col-start-4 md:row-start-2"
         />
         <BlockCell
@@ -241,6 +301,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("cost_structure", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.cost_structure}
           className="md:col-span-2 md:col-start-1 md:row-start-3"
         />
         <BlockCell
@@ -254,6 +315,7 @@ export default function CanvasEditor({ canvas }: Props) {
             handleBlockChange("revenue_streams", v);
           }}
           onBlur={handleBlur}
+          critique={critique?.revenue_streams}
           className="md:col-span-3 md:col-start-3 md:row-start-3"
         />
       </div>

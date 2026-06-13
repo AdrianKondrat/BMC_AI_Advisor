@@ -312,24 +312,24 @@ AI critique call will take 5–15 s (same latency as canvas generation). The "An
 
 #### Automated
 
-- [x] 2.1 Build passes: `npm run build` exits 0
-- [x] 2.2 Lint passes: `npm run lint` exits 0
+- [x] 2.1 Build passes: `npm run build` exits 0 — 879646f
+- [x] 2.2 Lint passes: `npm run lint` exits 0 — 879646f
 
 #### Manual
 
-- [x] 2.3 Authenticated POST to fully-filled canvas returns 200 with 9-key critique JSON
-- [x] 2.4 Supabase Studio shows `critique` column populated on that canvas row
-- [x] 2.5 POST to canvas with empty block returns 400 with completeness error message
-- [x] 2.6 Unauthenticated POST returns 401
-- [x] 2.7 POST with invalid UUID returns 400
-- [x] 2.8 POST with another user's canvas ID returns 404
+- [x] 2.3 Authenticated POST to fully-filled canvas returns 200 with 9-key critique JSON — 879646f
+- [x] 2.4 Supabase Studio shows `critique` column populated on that canvas row — 879646f
+- [x] 2.5 POST to canvas with empty block returns 400 with completeness error message — 879646f
+- [x] 2.6 Unauthenticated POST returns 401 — 879646f
+- [x] 2.7 POST with invalid UUID returns 400 — 879646f
+- [x] 2.8 POST with another user's canvas ID returns 404 — 879646f
 
 ### Phase 3: CanvasEditor UI — Critique Trigger + Inline Display
 
 #### Automated
 
-- [ ] 3.1 Build passes: `npm run build` exits 0
-- [ ] 3.2 Lint passes: `npm run lint` exits 0
+- [x] 3.1 Build passes: `npm run build` exits 0
+- [x] 3.2 Lint passes: `npm run lint` exits 0
 
 #### Manual
 
