@@ -299,30 +299,30 @@ AI critique call will take 5–15 s (same latency as canvas generation). The "An
 
 #### Automated
 
-- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0
-- [x] 1.2 Build passes: `npm run build` exits 0
-- [x] 1.3 Lint passes: `npm run lint` exits 0
+- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0 — 5f1117d
+- [x] 1.2 Build passes: `npm run build` exits 0 — 5f1117d
+- [x] 1.3 Lint passes: `npm run lint` exits 0 — 5f1117d
 
 #### Manual
 
-- [x] 1.4 `canvases` table shows `critique` column (nullable, jsonb) in Supabase Studio
-- [x] 1.5 Existing canvas rows still appear without error
+- [x] 1.4 `canvases` table shows `critique` column (nullable, jsonb) in Supabase Studio — 5f1117d
+- [x] 1.5 Existing canvas rows still appear without error — 5f1117d
 
 ### Phase 2: AI Critique Function + API Route
 
 #### Automated
 
-- [ ] 2.1 Build passes: `npm run build` exits 0
-- [ ] 2.2 Lint passes: `npm run lint` exits 0
+- [x] 2.1 Build passes: `npm run build` exits 0
+- [x] 2.2 Lint passes: `npm run lint` exits 0
 
 #### Manual
 
-- [ ] 2.3 Authenticated POST to fully-filled canvas returns 200 with 9-key critique JSON
-- [ ] 2.4 Supabase Studio shows `critique` column populated on that canvas row
-- [ ] 2.5 POST to canvas with empty block returns 400 with completeness error message
-- [ ] 2.6 Unauthenticated POST returns 401
-- [ ] 2.7 POST with invalid UUID returns 400
-- [ ] 2.8 POST with another user's canvas ID returns 404
+- [x] 2.3 Authenticated POST to fully-filled canvas returns 200 with 9-key critique JSON
+- [x] 2.4 Supabase Studio shows `critique` column populated on that canvas row
+- [x] 2.5 POST to canvas with empty block returns 400 with completeness error message
+- [x] 2.6 Unauthenticated POST returns 401
+- [x] 2.7 POST with invalid UUID returns 400
+- [x] 2.8 POST with another user's canvas ID returns 404
 
 ### Phase 3: CanvasEditor UI — Critique Trigger + Inline Display
 
