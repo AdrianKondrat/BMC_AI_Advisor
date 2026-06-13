@@ -328,15 +328,15 @@ AI critique call will take 5–15 s (same latency as canvas generation). The "An
 
 #### Automated
 
-- [x] 3.1 Build passes: `npm run build` exits 0
-- [x] 3.2 Lint passes: `npm run lint` exits 0
+- [x] 3.1 Build passes: `npm run build` exits 0 — 25351cd
+- [x] 3.2 Lint passes: `npm run lint` exits 0 — 25351cd
 
 #### Manual
 
-- [ ] 3.3 "Run Critique" button visible in editor header for a fully-filled canvas
-- [ ] 3.4 Button shows "Analysing…" and is disabled during AI call
-- [ ] 3.5 All 9 blocks show category badge + critique text after response
-- [ ] 3.6 Page refresh preserves critique (loaded from DB)
-- [ ] 3.7 "Re-run Critique" replaces previous critique
-- [ ] 3.8 Empty-block attempt shows inline 400 error message
-- [ ] 3.9 Editing a block hides critique section; blur restores it
+- [x] 3.3 "Run Critique" button visible in editor header for a fully-filled canvas — 25351cd
+- [x] 3.4 Button shows "Analysing…" and is disabled during AI call — 25351cd
+- [x] 3.5 All 9 blocks show category badge + critique text after response — 25351cd
+- [x] 3.6 Page refresh preserves critique (loaded from DB) — 25351cd
+- [x] 3.7 "Re-run Critique" replaces previous critique — 25351cd
+- [x] 3.8 Empty-block attempt shows inline 400 error message — 25351cd
+- [x] 3.9 Editing a block hides critique section; blur restores it — 25351cd
