@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import type { BlockCritique, BMCBlockKey, Canvas, CanvasCritique, CanvasBlocks } from "@/types";
+import type { BlockCritique, BMCBlockKey, Canvas, CanvasCritique, CanvasBlocks, ShareLink } from "@/types";
 import { cn } from "@/lib/utils";
+import SharePanel from "@/components/SharePanel";
 
 const BMC_BLOCK_LABELS: Record<BMCBlockKey, string> = {
   key_partners: "Key Partners",
@@ -41,6 +42,7 @@ const CATEGORY_STYLES: Record<BlockCritique["category"], string> = {
 
 interface Props {
   canvas: Canvas;
+  initialShareLink?: ShareLink | null;
 }
 
 interface BlockCellProps {
@@ -101,7 +103,7 @@ function BlockCell({ blockKey, content, isActive, onClick, onChange, onBlur, cri
   );
 }
 
-export default function CanvasEditor({ canvas }: Props) {
+export default function CanvasEditor({ canvas, initialShareLink }: Props) {
   const [blocks, setBlocks] = useState<CanvasBlocks>(() => initBlocks(canvas.blocks));
   const [activeBlock, setActiveBlock] = useState<BMCBlockKey | null>(null);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
@@ -109,32 +111,57 @@ export default function CanvasEditor({ canvas }: Props) {
   const [critiqueStatus, setCritiqueStatus] = useState<CritiqueStatus>("idle");
   const blocksRef = useRef(blocks);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const queuedBlocksRef = useRef<CanvasBlocks | null>(null);
+  const isSavingRef = useRef(false);
+  const savePromiseRef = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
     blocksRef.current = blocks;
   }, [blocks]);
 
   async function saveBlocks(currentBlocks: CanvasBlocks) {
-    setSaveStatus("saving");
-    try {
-      const res = await fetch(`/api/canvases/${canvas.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ blocks: currentBlocks }),
-      });
-      setSaveStatus(res.ok ? "saved" : "error");
-    } catch {
-      setSaveStatus("error");
+    queuedBlocksRef.current = currentBlocks;
+    if (isSavingRef.current) {
+      return savePromiseRef.current ?? Promise.resolve();
     }
-    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-    saveTimeoutRef.current = setTimeout(() => {
-      setSaveStatus("idle");
-    }, 2000);
+
+    isSavingRef.current = true;
+    setSaveStatus("saving");
+
+    savePromiseRef.current = (async () => {
+      try {
+        while (queuedBlocksRef.current) {
+          const blocksToSave = queuedBlocksRef.current;
+          queuedBlocksRef.current = null;
+
+          try {
+            const res = await fetch(`/api/canvases/${canvas.id}`, {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ blocks: blocksToSave }),
+            });
+            setSaveStatus(res.ok ? "saved" : "error");
+          } catch {
+            setSaveStatus("error");
+          }
+        }
+      } finally {
+        if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+        saveTimeoutRef.current = setTimeout(() => {
+          setSaveStatus("idle");
+        }, 2000);
+        isSavingRef.current = false;
+        savePromiseRef.current = null;
+      }
+    })();
+
+    return savePromiseRef.current;
   }
 
   async function runCritique() {
     setCritiqueStatus("loading");
     try {
+      await saveBlocks(blocksRef.current);
       const res = await fetch(`/api/canvases/${canvas.id}/critique`, { method: "POST" });
       if (res.ok) {
         setCritique((await res.json()) as CanvasCritique);
@@ -179,6 +206,7 @@ export default function CanvasEditor({ canvas }: Props) {
             </span>
           )}
           {critiqueStatus === "error" && <span className="text-sm text-red-400">Critique failed — try again</span>}
+          <SharePanel canvasId={canvas.id} initialShareLink={initialShareLink ?? null} />
           <button
             onClick={() => {
               void runCritique();

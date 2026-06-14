@@ -409,15 +409,15 @@ New migration `20260613000000_share_canvas_anon_read.sql` adds one RLS policy. I
 
 #### Automated
 
-- [x] 3.1 Build passes: `npm run build` exits 0
-- [x] 3.2 Lint passes: `npm run lint` exits 0
+- [x] 3.1 Build passes: `npm run build` exits 0 — 52e9f62
+- [x] 3.2 Lint passes: `npm run lint` exits 0 — 52e9f62
 
 #### Manual
 
-- [x] 3.3 "Share" button opens panel; "Create share link" creates link and displays URL + expiry
-- [x] 3.4 Copy button fills clipboard and shows "Copied!" feedback
-- [x] 3.5 Renew updates expiry date in the UI
-- [x] 3.6 Revoke removes the link and returns to create state
+- [x] 3.3 "Share" button opens panel; "Create share link" creates link and displays URL + expiry — 52e9f62
+- [x] 3.4 Copy button fills clipboard and shows "Copied!" feedback — 52e9f62
+- [x] 3.5 Renew updates expiry date in the UI — 52e9f62
+- [x] 3.6 Revoke removes the link and returns to create state — 52e9f62
 
 ### Phase 4: CanvasEditor Integration
 
@@ -428,9 +428,9 @@ New migration `20260613000000_share_canvas_anon_read.sql` adds one RLS policy. I
 
 #### Manual
 
-- [ ] 4.3 "Share" button appears in canvas editor header next to "Run Critique"
-- [ ] 4.4 Share panel is functional end-to-end from the editor
-- [ ] 4.5 Critique and save functionality unaffected
+- [x] 4.3 "Share" button appears in canvas editor header next to "Run Critique"
+- [x] 4.4 Share panel is functional end-to-end from the editor
+- [x] 4.5 Critique and save functionality unaffected
 
 ### Phase 5: Public Share Page
 

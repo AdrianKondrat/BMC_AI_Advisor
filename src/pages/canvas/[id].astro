@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import CanvasEditor from "@/components/CanvasEditor";
 import { createClient } from "@/lib/supabase";
-import type { Canvas } from "@/types";
+import type { Canvas, ShareLink } from "@/types";
 
 const { user } = Astro.locals;
 const { id } = Astro.params;
@@ -16,6 +16,18 @@ if (supabase && id) {
 }
 
 if (!canvas) return Astro.redirect("/dashboard");
+
+let shareLink: ShareLink | null = null;
+if (supabase && id) {
+  const { data } = await supabase
+    .from("share_links")
+    .select("*")
+    .eq("canvas_id", id)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (data) shareLink = data;
+}
 ---
 
 <Layout title={canvas.name ?? "Canvas"}>
@@ -24,7 +36,7 @@ if (!canvas) return Astro.redirect("/dashboard");
       <header class="mb-8">
         <a href="/dashboard" class="text-sm text-white/50 hover:text-white/80">← Back to dashboard</a>
       </header>
-      <CanvasEditor client:load canvas={canvas} />
+      <CanvasEditor client:load canvas={canvas} initialShareLink={shareLink} />
     </div>
   </div>
 </Layout>
