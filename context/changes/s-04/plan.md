@@ -382,28 +382,28 @@ New migration `20260613000000_share_canvas_anon_read.sql` adds one RLS policy. I
 
 #### Automated
 
-- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0
-- [x] 1.2 Build passes: `npm run build` exits 0
-- [x] 1.3 Lint passes: `npm run lint` exits 0
+- [x] 1.1 Migration applies cleanly: `npx supabase db reset` exits 0 — 734a4e6
+- [x] 1.2 Build passes: `npm run build` exits 0 — 734a4e6
+- [x] 1.3 Lint passes: `npm run lint` exits 0 — 734a4e6
 
 #### Manual
 
-- [x] 1.4 "anon can read shared canvases" policy visible in Supabase Studio → Auth → Policies
-- [x] 1.5 Anon SELECT on canvas with valid share link returns row; canvas without link returns 0 rows
+- [x] 1.4 "anon can read shared canvases" policy visible in Supabase Studio → Auth → Policies — 734a4e6
+- [x] 1.5 Anon SELECT on canvas with valid share link returns row; canvas without link returns 0 rows — 734a4e6
 
 ### Phase 2: Share Link API
 
 #### Automated
 
-- [ ] 2.1 Build passes: `npm run build` exits 0
-- [ ] 2.2 Lint passes: `npm run lint` exits 0
+- [x] 2.1 Build passes: `npm run build` exits 0
+- [x] 2.2 Lint passes: `npm run lint` exits 0
 
 #### Manual
 
-- [ ] 2.3 POST creates share link (201) with token and expires_at ~7 days out
-- [ ] 2.4 Second POST to same canvas replaces old link (one row in share_links)
-- [ ] 2.5 GET returns the link; PATCH updates expires_at; DELETE removes link
-- [ ] 2.6 Unauthenticated or wrong-owner calls return 401
+- [x] 2.3 POST creates share link (201) with token and expires_at ~7 days out
+- [x] 2.4 Second POST to same canvas replaces old link (one row in share_links)
+- [x] 2.5 GET returns the link; PATCH updates expires_at; DELETE removes link
+- [x] 2.6 Unauthenticated or wrong-owner calls return 401
 
 ### Phase 3: SharePanel Component
 
