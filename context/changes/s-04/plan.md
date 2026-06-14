@@ -436,14 +436,14 @@ New migration `20260613000000_share_canvas_anon_read.sql` adds one RLS policy. I
 
 #### Automated
 
-- [x] 5.1 Build passes: `npm run build` exits 0
-- [x] 5.2 Lint passes: `npm run lint` exits 0
+- [x] 5.1 Build passes: `npm run build` exits 0 — a4e05ad
+- [x] 5.2 Lint passes: `npm run lint` exits 0 — a4e05ad
 
 #### Manual
 
-- [x] 5.3 Valid share URL shows full 9-block canvas read-only in incognito window
-- [x] 5.4 Critique badges appear if critique was run on the canvas
-- [x] 5.5 No edit controls present in the share view
-- [x] 5.6 Unknown token → "expired or invalid" error screen (no crash)
-- [x] 5.7 Revoked link → error screen on next visit
-- [x] 5.8 Manually expired link (expires_at in the past) → error screen
+- [x] 5.3 Valid share URL shows full 9-block canvas read-only in incognito window — a4e05ad
+- [x] 5.4 Critique badges appear if critique was run on the canvas — a4e05ad
+- [x] 5.5 No edit controls present in the share view — a4e05ad
+- [x] 5.6 Unknown token → "expired or invalid" error screen (no crash) — a4e05ad
+- [x] 5.7 Revoked link → error screen on next visit — a4e05ad
+- [x] 5.8 Manually expired link (expires_at in the past) → error screen — a4e05ad

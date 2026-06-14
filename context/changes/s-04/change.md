@@ -1,9 +1,9 @@
 ---
 change_id: s-04
 title: Read-only share link with optional expiry and PIN
-status: implementing
+status: implemented
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-14
 archived_at: null
 ---
 
