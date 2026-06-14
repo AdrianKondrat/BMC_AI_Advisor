@@ -1,0 +1,50 @@
+---
+export const prerender = false;
+
+import Layout from "@/layouts/Layout.astro";
+import CanvasReadOnly from "@/components/CanvasReadOnly";
+import { createClient } from "@/lib/supabase";
+import type { Canvas } from "@/types";
+
+const { token } = Astro.params;
+
+const supabase = createClient(Astro.request.headers, Astro.cookies);
+
+let canvas: Canvas | null = null;
+let invalid = false;
+
+if (!supabase || !token) {
+  invalid = true;
+} else {
+  const { data: shareLink } = await supabase
+    .from("share_links")
+    .select("canvas_id, expires_at")
+    .eq("token", token)
+    .single();
+
+  if (!shareLink) {
+    invalid = true;
+  } else {
+    const { data } = await supabase.from("canvases").select("*").eq("id", shareLink.canvas_id).single();
+    if (data) canvas = data as unknown as Canvas;
+    else invalid = true;
+  }
+}
+---
+
+<Layout title={canvas ? `${canvas.name ?? "Canvas"} — Shared` : "Invalid share link"}>
+  <div class="bg-cosmic min-h-screen p-6">
+    <div class="mx-auto max-w-6xl">
+      {
+        invalid || !canvas ? (
+          <div class="flex min-h-[60vh] flex-col items-center justify-center gap-4 text-center">
+            <h1 class="text-2xl font-semibold text-white">Link expired or invalid</h1>
+            <p class="text-white/60">This share link has expired or is invalid.</p>
+          </div>
+        ) : (
+          <CanvasReadOnly canvas={canvas} />
+        )
+      }
+    </div>
+  </div>
+</Layout>
