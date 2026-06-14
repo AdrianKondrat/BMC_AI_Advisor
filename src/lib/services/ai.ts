@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { z } from "zod";
 import { OPENROUTER_API_KEY } from "astro:env/server";
 import type { CanvasBlocks, CanvasCritique } from "@/types";
 
@@ -31,6 +32,18 @@ const BMC_SCHEMA = {
   required: ["name", ...BMC_KEYS],
   additionalProperties: false,
 };
+
+const aiCanvasShape = BMC_KEYS.reduce<z.ZodRawShape>(
+  (shape, key) => {
+    shape[key] = z.string();
+    return shape;
+  },
+  {
+    name: z.string(),
+  } satisfies z.ZodRawShape,
+);
+
+const aiCanvasSchema = z.object(aiCanvasShape);
 
 export const CRITIQUE_MODEL = "openai/gpt-4o";
 
@@ -137,11 +150,11 @@ export async function generateBMCCanvas(idea: string): Promise<{ name: string } 
       },
     ],
   });
-
   const content = response.choices[0]?.message?.content;
   if (!content) {
     throw new Error("Empty response from AI");
   }
 
-  return JSON.parse(content) as { name: string } & CanvasBlocks;
+  const parsed: unknown = JSON.parse(content);
+  return aiCanvasSchema.parse(parsed) as { name: string } & CanvasBlocks;
 }

@@ -70,14 +70,20 @@ export const POST: APIRoute = async (context) => {
     return new Response(null, { status: 500 });
   }
 
-  const { error: updateError } = await supabase
+  const { data: updatedCanvas, error: updateError } = await supabase
     .from("canvases")
     .update({ critique: result })
     .eq("id", id)
-    .eq("owner_id", userId);
+    .eq("owner_id", userId)
+    .select("id")
+    .maybeSingle();
 
   if (updateError) {
     return new Response(null, { status: 500 });
+  }
+
+  if (!updatedCanvas) {
+    return new Response(null, { status: 404 });
   }
 
   return Response.json(result, { status: 200 });

@@ -3,31 +3,37 @@ export const prerender = false;
 
 import Layout from "@/layouts/Layout.astro";
 import CanvasReadOnly from "@/components/CanvasReadOnly";
-import { createClient } from "@/lib/supabase";
 import type { Canvas } from "@/types";
 
 const { token } = Astro.params;
 
-const supabase = createClient(Astro.request.headers, Astro.cookies);
-
 let canvas: Canvas | null = null;
 let invalid = false;
 
-if (!supabase || !token) {
+if (!token) {
   invalid = true;
 } else {
-  const { data: shareLink } = await supabase
-    .from("share_links")
-    .select("canvas_id, expires_at")
-    .eq("token", token)
-    .single();
+  try {
+    const shareUrl = new URL(`/api/share/${token}`, Astro.request.url);
+    const shareResponse = await fetch(shareUrl.toString(), {
+      headers: {
+        Cookie: "",
+      },
+      credentials: "omit",
+    });
 
-  if (!shareLink) {
+    if (!shareResponse.ok) {
+      invalid = true;
+    } else {
+      const payload = (await shareResponse.json()) as { canvas?: Canvas };
+      if (!payload.canvas) {
+        invalid = true;
+      } else {
+        canvas = payload.canvas;
+      }
+    }
+  } catch {
     invalid = true;
-  } else {
-    const { data } = await supabase.from("canvases").select("*").eq("id", shareLink.canvas_id).single();
-    if (data) canvas = data as unknown as Canvas;
-    else invalid = true;
   }
 }
 ---

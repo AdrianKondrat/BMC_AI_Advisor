@@ -31,6 +31,7 @@ export type Database = {
       canvases: {
         Row: {
           blocks: Json;
+          critique: Json | null;
           created_at: string;
           id: string;
           idea: string | null;
@@ -40,6 +41,7 @@ export type Database = {
         };
         Insert: {
           blocks?: Json;
+          critique?: Json | null;
           created_at?: string;
           id?: string;
           idea?: string | null;
@@ -49,6 +51,7 @@ export type Database = {
         };
         Update: {
           blocks?: Json;
+          critique?: Json | null;
           created_at?: string;
           id?: string;
           idea?: string | null;

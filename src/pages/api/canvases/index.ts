@@ -23,7 +23,14 @@ export const POST: APIRoute = async (context) => {
 
   const result = bodySchema.safeParse(body);
   if (!result.success) {
-    return Response.json({ error: result.error.issues }, { status: 400 });
+    const errorMessage = result.error.issues
+      .map((issue) => {
+        const path = issue.path.length ? issue.path.join(".") : "body";
+        return `${path}: ${issue.message}`;
+      })
+      .join("; ");
+
+    return Response.json({ error: errorMessage }, { status: 400 });
   }
 
   const { idea } = result.data;

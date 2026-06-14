@@ -1,7 +1,7 @@
 ---
 change_id: ai-critique
 title: AI block-level critique of a filled canvas
-status: implemented
+status: impl_reviewed
 created: 2026-06-11
 updated: 2026-06-13
 archived_at: null

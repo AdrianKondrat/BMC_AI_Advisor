@@ -6,6 +6,8 @@ export const prerender = false;
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+const MAX_BLOCK_TEXT = 2000;
+
 const patchBodySchema = z.object({
   blocks: z.record(
     z.enum([
@@ -19,7 +21,7 @@ const patchBodySchema = z.object({
       "cost_structure",
       "revenue_streams",
     ]),
-    z.string(),
+    z.string().max(MAX_BLOCK_TEXT),
   ),
 });
 

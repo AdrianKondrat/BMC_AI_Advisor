@@ -33,7 +33,7 @@ export const GET: APIRoute = async (context) => {
     .maybeSingle();
 
   if (!canvas) {
-    return new Response(null, { status: 404 });
+    return new Response(null, { status: 401 });
   }
 
   const { data, error } = await supabase
@@ -79,23 +79,15 @@ export const POST: APIRoute = async (context) => {
     .maybeSingle();
 
   if (!canvas) {
-    return new Response(null, { status: 404 });
+    return new Response(null, { status: 401 });
   }
 
-  // Delete any existing share link for this canvas
-  const { error: deleteError } = await supabase.from("share_links").delete().eq("canvas_id", id);
+  const { data, error } = await supabase.rpc("rotate_share_link", {
+    canvas_uuid: id,
+    expires_at: sevenDaysFromNow(),
+  });
 
-  if (deleteError) {
-    return new Response(null, { status: 500 });
-  }
-
-  const { data, error } = await supabase
-    .from("share_links")
-    .insert({ canvas_id: id, expires_at: sevenDaysFromNow() })
-    .select("*")
-    .single();
-
-  if (error) {
+  if (error || !data) {
     return new Response(null, { status: 500 });
   }
 
@@ -126,7 +118,7 @@ export const PATCH: APIRoute = async (context) => {
     .maybeSingle();
 
   if (!canvas) {
-    return new Response(null, { status: 404 });
+    return new Response(null, { status: 401 });
   }
 
   const { data, error } = await supabase
