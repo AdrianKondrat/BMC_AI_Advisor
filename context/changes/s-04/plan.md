@@ -395,36 +395,36 @@ New migration `20260613000000_share_canvas_anon_read.sql` adds one RLS policy. I
 
 #### Automated
 
-- [x] 2.1 Build passes: `npm run build` exits 0
-- [x] 2.2 Lint passes: `npm run lint` exits 0
+- [x] 2.1 Build passes: `npm run build` exits 0 — 3b8a7f1
+- [x] 2.2 Lint passes: `npm run lint` exits 0 — 3b8a7f1
 
 #### Manual
 
-- [x] 2.3 POST creates share link (201) with token and expires_at ~7 days out
-- [x] 2.4 Second POST to same canvas replaces old link (one row in share_links)
-- [x] 2.5 GET returns the link; PATCH updates expires_at; DELETE removes link
-- [x] 2.6 Unauthenticated or wrong-owner calls return 401
+- [x] 2.3 POST creates share link (201) with token and expires_at ~7 days out — 3b8a7f1
+- [x] 2.4 Second POST to same canvas replaces old link (one row in share_links) — 3b8a7f1
+- [x] 2.5 GET returns the link; PATCH updates expires_at; DELETE removes link — 3b8a7f1
+- [x] 2.6 Unauthenticated or wrong-owner calls return 401 — 3b8a7f1
 
 ### Phase 3: SharePanel Component
 
 #### Automated
 
-- [ ] 3.1 Build passes: `npm run build` exits 0
-- [ ] 3.2 Lint passes: `npm run lint` exits 0
+- [x] 3.1 Build passes: `npm run build` exits 0
+- [x] 3.2 Lint passes: `npm run lint` exits 0
 
 #### Manual
 
-- [ ] 3.3 "Share" button opens panel; "Create share link" creates link and displays URL + expiry
-- [ ] 3.4 Copy button fills clipboard and shows "Copied!" feedback
-- [ ] 3.5 Renew updates expiry date in the UI
-- [ ] 3.6 Revoke removes the link and returns to create state
+- [x] 3.3 "Share" button opens panel; "Create share link" creates link and displays URL + expiry
+- [x] 3.4 Copy button fills clipboard and shows "Copied!" feedback
+- [x] 3.5 Renew updates expiry date in the UI
+- [x] 3.6 Revoke removes the link and returns to create state
 
 ### Phase 4: CanvasEditor Integration
 
 #### Automated
 
-- [ ] 4.1 Build passes: `npm run build` exits 0
-- [ ] 4.2 Lint passes: `npm run lint` exits 0
+- [x] 4.1 Build passes: `npm run build` exits 0
+- [x] 4.2 Lint passes: `npm run lint` exits 0
 
 #### Manual
 
