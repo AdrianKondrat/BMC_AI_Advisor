@@ -1,9 +1,9 @@
 ---
 project: "BMC AI Advisor"
 version: 1
-status: draft
+status: active
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-06-14
 prd_version: 1
 main_goal: speed
 top_blocker: time
@@ -29,13 +29,13 @@ The product's distinguishing trait — the one capability that, if removed, make
 
 ## At a glance
 
-| ID   | Change ID            | Outcome (user can …)                                                                        | Prerequisites | PRD refs                              | Status   |
-| ---- | -------------------- | ------------------------------------------------------------------------------------------- | ------------- | ------------------------------------- | -------- |
-| F-01 | canvas-schema        | (foundation) canvas, blocks, and share-link tables in Supabase with RLS per-user isolation | —             | FR-001, FR-002, FR-003, FR-011        | ready    |
-| S-01 | canvas-dashboard     | view list of saved canvases and delete any canvas                                           | F-01          | FR-004, FR-005, US-01                 | proposed |
-| S-02 | ai-canvas-generation | input a plain-text idea, trigger AI fill of all 9 BMC blocks, edit any block, and see the canvas auto-saved | F-01, S-01    | FR-003, FR-006, FR-007, FR-008, US-01 | proposed |
-| S-03 | ai-critique          | trigger AI critique of their canvas and see block-level feedback                            | S-02          | FR-010, US-02                         | proposed |
-| S-04 | share-canvas         | generate a read-only share link with expiry/PIN and share it with anyone                    | S-02          | FR-011, FR-012, US-03                 | proposed |
+| ID   | Change ID        | Outcome (user can …)                                                                                        | Prerequisites | PRD refs                              | Status |
+| ---- | ---------------- | ----------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------- | ------ |
+| F-01 | canvas-schema    | (foundation) canvas, blocks, and share-link tables in Supabase with RLS per-user isolation                  | —             | FR-001, FR-002, FR-003, FR-011        | done   |
+| S-01 | canvas-dashboard | view list of saved canvases and delete any canvas                                                           | F-01          | FR-004, FR-005, US-01                 | ready  |
+| S-02 | s-02             | input a plain-text idea, trigger AI fill of all 9 BMC blocks, edit any block, and see the canvas auto-saved | F-01, S-01    | FR-003, FR-006, FR-007, FR-008, US-01 | done   |
+| S-03 | ai-critique      | trigger AI critique of their canvas and see block-level feedback                                            | S-02          | FR-010, US-02                         | done   |
+| S-04 | s-04             | generate a read-only share link with optional expiry and share it with anyone (PIN deferred)                | S-02          | FR-011, FR-012, US-03                 | done   |
 
 ## Baseline
 
@@ -62,7 +62,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** every downstream slice depends on this schema; sequenced first. Main risk is picking the wrong block storage shape — JSONB column on `canvases` is simpler than a normalized `canvas_blocks` table and fits `speed` mode; defer normalization to a later change if needed.
-- **Status:** ready
+- **Status:** done
 
 ## Slices
 
@@ -76,20 +76,19 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** small surface, but the list and delete paths must exist before S-02 auto-saves a canvas into the list. Sequenced before AI generation to catch data-layer issues early and cheaply.
-- **Status:** proposed
+- **Status:** ready
 
 ### S-02: AI-generated canvas
 
 - **Outcome:** user can input a plain-text business idea, trigger AI fill of all 9 BMC blocks, see them populated instantly, edit any block individually, and find the canvas auto-saved and auto-named in their list.
-- **Change ID:** ai-canvas-generation
+- **Change ID:** s-02
 - **PRD refs:** FR-003, FR-006, FR-007, FR-008, US-01, NFR (progress feedback — loader/streaming during AI call), NFR (data privacy — AI provider must not store idea content)
 - **Prerequisites:** F-01, S-01
 - **Parallel with:** —
 - **Blockers:** —
-- **Unknowns:**
-  - Which AI model to use for structured BMC output (OpenRouter multi-model gateway vs. OpenAI direct; GPT-4o-mini vs. larger model for JSON schema reliability) — Owner: user. Block: no (default to GPT-4o via OpenRouter; switch via `AI_PROVIDER` env var without code changes).
+- **Unknowns:** —
 - **Risk:** most complex integration in the product — structured JSON output from AI, block-level persistence, and progress feedback all in one slice. AI latency will likely exceed 2 s; NFR requires visible progress during the wait — use streaming response or a loading indicator. If structured output is unreliable for a chosen model, switching models requires only an env-var change.
-- **Status:** proposed
+- **Status:** done
 
 ### S-03: AI critique
 
@@ -97,33 +96,33 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Change ID:** ai-critique
 - **PRD refs:** FR-010, US-02, NFR (progress feedback)
 - **Prerequisites:** S-02
-- **Parallel with:** S-04 (share-canvas)
+- **Parallel with:** S-04 (s-04)
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** re-uses the AI integration scaffolded in S-02; main risk is prompt quality — critique prompt must enforce block-scoped output and evaluate at least one cross-block relationship (e.g., Value Proposition ↔ Customer Segment) to satisfy US-02 acceptance criteria. Free-form critique without block tags fails the acceptance test.
-- **Status:** proposed
+- **Status:** done
 
 ### S-04: Share canvas
 
-- **Outcome:** user can generate a shareable read-only link for a canvas (with optional expiry or PIN), and anyone with the valid link can view the full canvas — including any critique run — without creating an account.
-- **Change ID:** share-canvas
+- **Outcome:** user can generate a shareable read-only link for a canvas (with optional expiry), and anyone with the valid link can view the full canvas — including any critique run — without creating an account. PIN protection was deferred.
+- **Change ID:** s-04
 - **PRD refs:** FR-011, FR-012, US-03, NFR (3-second canvas render for share-link recipients)
 - **Prerequisites:** S-02
 - **Parallel with:** S-03 (ai-critique)
 - **Blockers:** —
 - **Unknowns:** —
-- **Risk:** public route requires deliberate auth bypass (read-only, no account); expiry and PIN must be enforced server-side; link must be strictly read-only (PRD Guardrail: "recipient must never be able to modify the founder's canvas"). Recipient performance NFR (3 s render) is naturally served by Cloudflare edge delivery.
-- **Status:** proposed
+- **Risk:** public route requires deliberate auth bypass (read-only, no account); expiry must be enforced server-side; link must be strictly read-only (PRD Guardrail: "recipient must never be able to modify the founder's canvas"). Recipient performance NFR (3 s render) is naturally served by Cloudflare edge delivery.
+- **Status:** done (PIN deferred)
 
 ## Backlog Handoff
 
-| Roadmap ID | Change ID            | Suggested issue title                                      | Ready for `/10x-plan` | Notes                         |
-| ---------- | -------------------- | ---------------------------------------------------------- | --------------------- | ----------------------------- |
-| F-01       | canvas-schema        | Define canvas, blocks, and share-link schema with RLS      | yes                   | Run `/10x-plan canvas-schema` |
-| S-01       | canvas-dashboard     | Canvas list and delete — founder dashboard                 | no                    | Needs F-01 done first         |
-| S-02       | ai-canvas-generation | AI-generated BMC fill, block edit, auto-save (north star)  | no                    | Needs F-01, S-01 done first   |
-| S-03       | ai-critique          | AI block-level critique of canvas                          | no                    | Needs S-02 done first         |
-| S-04       | share-canvas         | Read-only share link with expiry/PIN                       | no                    | Needs S-02 done first         |
+| Roadmap ID | Change ID        | Suggested issue title                                     | Ready for `/10x-plan` | Notes                            |
+| ---------- | ---------------- | --------------------------------------------------------- | --------------------- | -------------------------------- |
+| F-01       | canvas-schema    | Define canvas, blocks, and share-link schema with RLS     | —                     | Done — GitHub issue #1 closed    |
+| S-01       | canvas-dashboard | Canvas list and delete — founder dashboard                | yes                   | Run `/10x-plan canvas-dashboard` |
+| S-02       | s-02             | AI-generated BMC fill, block edit, auto-save (north star) | —                     | Done — GitHub issue #3 closed    |
+| S-03       | ai-critique      | AI block-level critique of canvas                         | —                     | Done — GitHub issue #4 closed    |
+| S-04       | s-04             | Read-only share link with expiry/PIN                      | —                     | Done — GitHub issue #5 closed    |
 
 ## Open Roadmap Questions
 
@@ -139,4 +138,9 @@ Foundations below assume these are present and do NOT re-scaffold them.
 
 ## Done
 
-(Empty on first generation. `/10x-archive` appends here when a change whose Change ID matches a roadmap item is archived.)
+| ID   | Change ID     | Completed  | Notes                                                           |
+| ---- | ------------- | ---------- | --------------------------------------------------------------- |
+| F-01 | canvas-schema | 2026-06-07 | Canvas, share_links tables + RLS; GitHub issue #1               |
+| S-02 | s-02          | 2026-06-11 | AI fill, block edit, auto-save; GitHub issue #3                 |
+| S-03 | ai-critique   | 2026-06-13 | Block-level critique with gap classification; GitHub issue #4   |
+| S-04 | s-04          | 2026-06-14 | Read-only share link with expiry; PIN deferred; GitHub issue #5 |
