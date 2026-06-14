@@ -3,37 +3,46 @@ export const prerender = false;
 
 import Layout from "@/layouts/Layout.astro";
 import CanvasReadOnly from "@/components/CanvasReadOnly";
+import { createAnonClient } from "@/lib/supabase";
 import type { Canvas } from "@/types";
+
+const TOKEN_REGEX = /^[0-9a-zA-Z_-]+$/;
 
 const { token } = Astro.params;
 
 let canvas: Canvas | null = null;
 let invalid = false;
 
-if (!token) {
+if (!token || !TOKEN_REGEX.test(token)) {
   invalid = true;
 } else {
-  try {
-    const shareUrl = new URL(`/api/share/${token}`, Astro.request.url);
-    const shareResponse = await fetch(shareUrl.toString(), {
-      headers: {
-        Cookie: "",
-      },
-      credentials: "omit",
-    });
+  const supabase = createAnonClient();
+  if (!supabase) {
+    invalid = true;
+  } else {
+    const { data: shareLink, error: shareError } = await supabase
+      .from("share_links")
+      .select("canvas_id, expires_at")
+      .eq("token", token)
+      .single();
 
-    if (!shareResponse.ok) {
+    const isExpired = (expiresAt: string | null) => (expiresAt ? new Date(expiresAt) < new Date() : false);
+
+    if (shareError || !shareLink || isExpired(shareLink.expires_at)) {
       invalid = true;
     } else {
-      const payload = (await shareResponse.json()) as { canvas?: Canvas };
-      if (!payload.canvas) {
+      const { data: canvasData, error: canvasError } = await supabase
+        .from("canvases")
+        .select("*")
+        .eq("id", shareLink.canvas_id)
+        .single();
+
+      if (canvasError || !canvasData) {
         invalid = true;
       } else {
-        canvas = payload.canvas;
+        canvas = canvasData as Canvas;
       }
     }
-  } catch {
-    invalid = true;
   }
 }
 ---
