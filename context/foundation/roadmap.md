@@ -32,7 +32,7 @@ The product's distinguishing trait — the one capability that, if removed, make
 | ID   | Change ID        | Outcome (user can …)                                                                                        | Prerequisites | PRD refs                              | Status |
 | ---- | ---------------- | ----------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------- | ------ |
 | F-01 | canvas-schema    | (foundation) canvas, blocks, and share-link tables in Supabase with RLS per-user isolation                  | —             | FR-001, FR-002, FR-003, FR-011        | done   |
-| S-01 | canvas-dashboard | view list of saved canvases and delete any canvas                                                           | F-01          | FR-004, FR-005, US-01                 | ready  |
+| S-01 | canvas-dashboard | view list of saved canvases and delete any canvas                                                           | F-01          | FR-004, FR-005, US-01                 | done   |
 | S-02 | s-02             | input a plain-text idea, trigger AI fill of all 9 BMC blocks, edit any block, and see the canvas auto-saved | F-01, S-01    | FR-003, FR-006, FR-007, FR-008, US-01 | done   |
 | S-03 | ai-critique      | trigger AI critique of their canvas and see block-level feedback                                            | S-02          | FR-010, US-02                         | done   |
 | S-04 | s-04             | generate a read-only share link with optional expiry and share it with anyone (PIN deferred)                | S-02          | FR-011, FR-012, US-03                 | done   |
@@ -76,7 +76,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** small surface, but the list and delete paths must exist before S-02 auto-saves a canvas into the list. Sequenced before AI generation to catch data-layer issues early and cheaply.
-- **Status:** ready
+- **Status:** done
 
 ### S-02: AI-generated canvas
 
@@ -116,13 +116,13 @@ Foundations below assume these are present and do NOT re-scaffold them.
 
 ## Backlog Handoff
 
-| Roadmap ID | Change ID        | Suggested issue title                                     | Ready for `/10x-plan` | Notes                            |
-| ---------- | ---------------- | --------------------------------------------------------- | --------------------- | -------------------------------- |
-| F-01       | canvas-schema    | Define canvas, blocks, and share-link schema with RLS     | —                     | Done — GitHub issue #1 closed    |
-| S-01       | canvas-dashboard | Canvas list and delete — founder dashboard                | yes                   | Run `/10x-plan canvas-dashboard` |
-| S-02       | s-02             | AI-generated BMC fill, block edit, auto-save (north star) | —                     | Done — GitHub issue #3 closed    |
-| S-03       | ai-critique      | AI block-level critique of canvas                         | —                     | Done — GitHub issue #4 closed    |
-| S-04       | s-04             | Read-only share link with expiry/PIN                      | —                     | Done — GitHub issue #5 closed    |
+| Roadmap ID | Change ID        | Suggested issue title                                     | Ready for `/10x-plan` | Notes                         |
+| ---------- | ---------------- | --------------------------------------------------------- | --------------------- | ----------------------------- |
+| F-01       | canvas-schema    | Define canvas, blocks, and share-link schema with RLS     | —                     | Done — GitHub issue #1 closed |
+| S-01       | canvas-dashboard | Canvas list and delete — founder dashboard                | —                     | Done — GitHub issue #2 closed |
+| S-02       | s-02             | AI-generated BMC fill, block edit, auto-save (north star) | —                     | Done — GitHub issue #3 closed |
+| S-03       | ai-critique      | AI block-level critique of canvas                         | —                     | Done — GitHub issue #4 closed |
+| S-04       | s-04             | Read-only share link with expiry/PIN                      | —                     | Done — GitHub issue #5 closed |
 
 ## Open Roadmap Questions
 
@@ -138,9 +138,10 @@ Foundations below assume these are present and do NOT re-scaffold them.
 
 ## Done
 
-| ID   | Change ID     | Completed  | Notes                                                           |
-| ---- | ------------- | ---------- | --------------------------------------------------------------- |
-| F-01 | canvas-schema | 2026-06-07 | Canvas, share_links tables + RLS; GitHub issue #1               |
-| S-02 | s-02          | 2026-06-11 | AI fill, block edit, auto-save; GitHub issue #3                 |
-| S-03 | ai-critique   | 2026-06-13 | Block-level critique with gap classification; GitHub issue #4   |
-| S-04 | s-04          | 2026-06-14 | Read-only share link with expiry; PIN deferred; GitHub issue #5 |
+| ID   | Change ID        | Completed  | Notes                                                           |
+| ---- | ---------------- | ---------- | --------------------------------------------------------------- |
+| F-01 | canvas-schema    | 2026-06-07 | Canvas, share_links tables + RLS; GitHub issue #1               |
+| S-01 | canvas-dashboard | 2026-06-08 | Canvas list and delete, empty state, RLS; GitHub issue #2       |
+| S-02 | s-02             | 2026-06-11 | AI fill, block edit, auto-save; GitHub issue #3                 |
+| S-03 | ai-critique      | 2026-06-13 | Block-level critique with gap classification; GitHub issue #4   |
+| S-04 | s-04             | 2026-06-14 | Read-only share link with expiry; PIN deferred; GitHub issue #5 |
