@@ -1,18 +1,19 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "../../src/lib/database.types";
+import { inject } from "vitest";
 
-function requireEnv(name: string): string {
-  const val = process.env[name];
-  if (!val) throw new Error(`Missing required env var: ${name}`);
-  return val;
+function getAdmin() {
+  const url = inject<string>("SUPABASE_URL");
+  const key = inject<string>("SUPABASE_SERVICE_ROLE_KEY");
+  if (!url) throw new Error("Missing SUPABASE_URL — is it set in env / repository secrets?");
+  if (!key) throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY — is it set in env / repository secrets?");
+  return createClient<Database>(url, key, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
 }
 
-const supabaseAdmin = createClient<Database>(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"), {
-  auth: { autoRefreshToken: false, persistSession: false },
-});
-
 export async function createTestUser(email: string, password: string): Promise<{ id: string }> {
-  const { data, error } = await supabaseAdmin.auth.admin.createUser({
+  const { data, error } = await getAdmin().auth.admin.createUser({
     email,
     password,
     email_confirm: true,
@@ -22,12 +23,12 @@ export async function createTestUser(email: string, password: string): Promise<{
 }
 
 export async function deleteTestUser(userId: string): Promise<void> {
-  const { error } = await supabaseAdmin.auth.admin.deleteUser(userId);
+  const { error } = await getAdmin().auth.admin.deleteUser(userId);
   if (error) throw new Error(`deleteTestUser failed: ${error.message}`);
 }
 
 export async function createTestCanvas(ownerId: string): Promise<{ id: string }> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getAdmin()
     .from("canvases")
     .insert({ owner_id: ownerId, name: "IDOR test fixture" })
     .select("id")
@@ -37,12 +38,12 @@ export async function createTestCanvas(ownerId: string): Promise<{ id: string }>
 }
 
 export async function deleteTestCanvas(canvasId: string): Promise<void> {
-  const { error } = await supabaseAdmin.from("canvases").delete().eq("id", canvasId);
+  const { error } = await getAdmin().from("canvases").delete().eq("id", canvasId);
   if (error) throw new Error(`deleteTestCanvas failed: ${error.message}`);
 }
 
 export async function canvasExists(canvasId: string): Promise<boolean> {
-  const { data, error } = await supabaseAdmin.from("canvases").select("id").eq("id", canvasId).maybeSingle();
+  const { data, error } = await getAdmin().from("canvases").select("id").eq("id", canvasId).maybeSingle();
   if (error) throw new Error(`canvasExists failed: ${error.message}`);
   return data !== null;
 }

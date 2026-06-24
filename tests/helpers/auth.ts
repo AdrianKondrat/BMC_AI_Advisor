@@ -1,15 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 import { createServerClient } from "@supabase/ssr";
-
-function requireEnv(name: string): string {
-  const val = process.env[name];
-  if (!val) throw new Error(`Missing required env var: ${name}`);
-  return val;
-}
+import { inject } from "vitest";
 
 export async function getAuthCookies(email: string, password: string): Promise<string> {
-  const url = requireEnv("SUPABASE_URL");
-  const anonKey = requireEnv("SUPABASE_KEY");
+  const url = inject<string>("SUPABASE_URL");
+  const anonKey = inject<string>("SUPABASE_KEY");
+  if (!url) throw new Error("Missing SUPABASE_URL — is it set in env / repository secrets?");
+  if (!anonKey) throw new Error("Missing SUPABASE_KEY — is it set in env / repository secrets?");
 
   const signInClient = createClient(url, anonKey, {
     auth: { autoRefreshToken: false, persistSession: false },
