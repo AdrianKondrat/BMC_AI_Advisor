@@ -210,20 +210,20 @@ The guards being tested are simple boolean gates (`if (!user) return 401`, `if (
 
 #### Automated
 
-- [x] 1.1 TypeScript compiles without errors: `npx tsc --noEmit`
-- [x] 1.2 Lint passes: `npm run lint`
+- [x] 1.1 TypeScript compiles without errors: `npx tsc --noEmit` — 6d5df7e
+- [x] 1.2 Lint passes: `npm run lint` — 6d5df7e
 
 ### Phase 2: Write share-link-integrity integration tests
 
 #### Automated
 
-- [ ] 2.1 Build succeeds and all tests pass: `npm run build && npm test`
-- [ ] 2.2 Test count increases by 4; no previously-passing test fails
+- [x] 2.1 Build succeeds and all tests pass: `npm run build && npm test`
+- [x] 2.2 Test count increases by 4; no previously-passing test fails
 
 #### Manual
 
-- [ ] 2.3 Test output shows both describe blocks with 2 passing tests each
-- [ ] 2.4 Phase 1 suite (access-control.test.ts) still shows 2 passing tests
+- [x] 2.3 Test output shows both describe blocks with 2 passing tests each
+- [x] 2.4 Phase 1 suite (access-control.test.ts) still shows 2 passing tests
 
 ### Phase 3: Update cookbook and advance rollout state
 
