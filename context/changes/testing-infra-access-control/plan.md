@@ -369,12 +369,12 @@ No database migrations. `SUPABASE_SERVICE_ROLE_KEY` is a new env var for the tes
 
 #### Automated
 
-- [x] 4.1 `npm run build && npm test` reports 5 passing tests total (3 redirect + 2 IDOR)
-- [x] 4.2 `npm run lint` passes on access-control.test.ts
-- [x] 4.3 Back-to-back run produces no fixture collision errors
+- [x] 4.1 `npm run build && npm test` reports 5 passing tests total (3 redirect + 2 IDOR) — f2b99ea
+- [x] 4.2 `npm run lint` passes on access-control.test.ts — f2b99ea
+- [x] 4.3 Back-to-back run produces no fixture collision errors — f2b99ea
 
 #### Manual
 
-- [x] 4.4 Test users appear in Supabase dashboard during run and are deleted after
-- [x] 4.5 False-positive guard: IDOR tests fail when PATCH owner filter is temporarily removed
-- [x] 4.6 §3 Phase 1 status in test-plan.md updated to `complete`
+- [x] 4.4 Test users appear in Supabase dashboard during run and are deleted after — f2b99ea
+- [x] 4.5 False-positive guard: IDOR tests fail when PATCH owner filter is temporarily removed — f2b99ea
+- [x] 4.6 §3 Phase 1 status in test-plan.md updated to `complete` — f2b99ea
