@@ -73,6 +73,13 @@ export default defineConfig({
       wrangler: {
         configPath: "./dist/server/wrangler.json",
       },
+      miniflare: {
+        vars: {
+          SUPABASE_URL: process.env.SUPABASE_URL ?? "",
+          SUPABASE_KEY: process.env.SUPABASE_KEY ?? "",
+          SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
+        },
+      },
     }),
   ],
   resolve: {
