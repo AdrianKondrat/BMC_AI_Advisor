@@ -330,28 +330,28 @@ No database migrations. `SUPABASE_SERVICE_ROLE_KEY` is a new env var for the tes
 
 #### Automated
 
-- [x] 1.1 `npm install` completes without peer-dependency errors
-- [x] 1.2 `npm run build && npm test` exits 0 (zero test files found)
-- [x] 1.3 `npx astro check` passes on `vitest.config.ts`
-- [x] 1.4 `npm run lint` passes on `vitest.config.ts`
+- [x] 1.1 `npm install` completes without peer-dependency errors — b519cea
+- [x] 1.2 `npm run build && npm test` exits 0 (zero test files found) — b519cea
+- [x] 1.3 `npx astro check` passes on `vitest.config.ts` — b519cea
+- [x] 1.4 `npm run lint` passes on `vitest.config.ts` — b519cea
 
 #### Manual
 
-- [ ] 1.5 `.dev.vars` updated locally with real `SUPABASE_SERVICE_ROLE_KEY` value
-- [ ] 1.6 `SUPABASE_SERVICE_ROLE_KEY` added as GitHub repository secret
-- [ ] 1.7 CI `Test` step appears and passes on a pushed branch
+- [x] 1.5 `.dev.vars` updated locally with real `SUPABASE_SERVICE_ROLE_KEY` value
+- [x] 1.6 `SUPABASE_SERVICE_ROLE_KEY` added as GitHub repository secret
+- [x] 1.7 CI `Test` step appears and passes on a pushed branch
 
 ### Phase 2: Auth Test Helpers
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` passes on `tests/helpers/setup.ts` and `tests/helpers/auth.ts`
-- [ ] 2.2 `npm run build && npm test` exits 0 (helpers imported without import errors)
+- [x] 2.1 `npm run lint` passes on `tests/helpers/setup.ts` and `tests/helpers/auth.ts`
+- [x] 2.2 `npm run build && npm test` exits 0 (helpers imported without import errors)
 
 #### Manual
 
-- [ ] 2.3 `createTestUser` + `deleteTestUser` confirmed working against live Supabase
-- [ ] 2.4 `getAuthCookies` returns a non-empty cookie string
+- [x] 2.3 `createTestUser` + `deleteTestUser` confirmed working against live Supabase
+- [x] 2.4 `getAuthCookies` returns a non-empty cookie string
 
 ### Phase 3: Risk #7 Integration Tests — Unauthenticated Redirect
 
