@@ -87,7 +87,7 @@ export const POST: APIRoute = async (context) => {
     expires_at: sevenDaysFromNow(),
   });
 
-  if (error || !data) {
+  if (error) {
     return new Response(null, { status: 500 });
   }
 
