@@ -24,7 +24,7 @@ export async function getAuthCookies(email: string, password: string): Promise<s
       getAll() {
         return [];
       },
-      setAll(cookiesToSet) {
+      setAll(cookiesToSet: { name: string; value: string; options?: unknown }[]) {
         cookiesToSet.forEach(({ name, value }) => {
           capturedCookies.push({ name, value });
         });

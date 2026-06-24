@@ -34,7 +34,7 @@ export async function createTestCanvas(ownerId: string): Promise<{ id: string }>
     .select("id")
     .single();
   if (error) throw new Error(`createTestCanvas failed: ${error.message}`);
-  return { id: data.id };
+  return { id: (data as { id: string }).id };
 }
 
 export async function deleteTestCanvas(canvasId: string): Promise<void> {
@@ -46,4 +46,22 @@ export async function canvasExists(canvasId: string): Promise<boolean> {
   const { data, error } = await getAdmin().from("canvases").select("id").eq("id", canvasId).maybeSingle();
   if (error) throw new Error(`canvasExists failed: ${error.message}`);
   return data !== null;
+}
+
+export async function createTestShareLink(
+  canvasId: string,
+  expiresAt: string | null = null,
+): Promise<{ id: string; token: string }> {
+  const { data, error } = await getAdmin()
+    .from("share_links")
+    .insert({ canvas_id: canvasId, expires_at: expiresAt })
+    .select("id, token")
+    .single();
+  if (error) throw new Error(`createTestShareLink failed: ${error.message}`);
+  return { id: data.id, token: data.token };
+}
+
+export async function deleteTestShareLink(shareLinkId: string): Promise<void> {
+  const { error } = await getAdmin().from("share_links").delete().eq("id", shareLinkId);
+  if (error) throw new Error(`deleteTestShareLink failed: ${error.message}`);
 }
