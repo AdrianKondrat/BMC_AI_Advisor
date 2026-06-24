@@ -58,7 +58,8 @@ export async function createTestShareLink(
     .select("id, token")
     .single();
   if (error) throw new Error(`createTestShareLink failed: ${error.message}`);
-  return { id: data.id, token: data.token };
+  const result = data as { id: string; token: string };
+  return { id: result.id, token: result.token };
 }
 
 export async function deleteTestShareLink(shareLinkId: string): Promise<void> {
