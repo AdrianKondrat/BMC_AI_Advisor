@@ -357,24 +357,24 @@ No database migrations. `SUPABASE_SERVICE_ROLE_KEY` is a new env var for the tes
 
 #### Automated
 
-- [x] 3.1 `npm run build && npm test` reports 3 passing tests in redirect.test.ts
-- [x] 3.2 `npm run lint` passes on redirect.test.ts
+- [x] 3.1 `npm run build && npm test` reports 3 passing tests in redirect.test.ts — 6b4dc96
+- [x] 3.2 `npm run lint` passes on redirect.test.ts — 6b4dc96
 
 #### Manual
 
-- [ ] 3.3 `--reporter=verbose` output shows legible test names and assertion values
-- [ ] 3.4 False-positive guard: tests fail when middleware redirect is temporarily removed
+- [x] 3.3 `--reporter=verbose` output shows legible test names and assertion values
+- [x] 3.4 False-positive guard: tests fail when middleware redirect is temporarily removed
 
 ### Phase 4: Risk #4 Integration Tests — IDOR + Cookbook Update
 
 #### Automated
 
-- [ ] 4.1 `npm run build && npm test` reports 5 passing tests total (3 redirect + 2 IDOR)
-- [ ] 4.2 `npm run lint` passes on access-control.test.ts
-- [ ] 4.3 Back-to-back run produces no fixture collision errors
+- [x] 4.1 `npm run build && npm test` reports 5 passing tests total (3 redirect + 2 IDOR)
+- [x] 4.2 `npm run lint` passes on access-control.test.ts
+- [x] 4.3 Back-to-back run produces no fixture collision errors
 
 #### Manual
 
-- [ ] 4.4 Test users appear in Supabase dashboard during run and are deleted after
-- [ ] 4.5 False-positive guard: IDOR tests fail when PATCH owner filter is temporarily removed
-- [ ] 4.6 §3 Phase 1 status in test-plan.md updated to `complete`
+- [x] 4.4 Test users appear in Supabase dashboard during run and are deleted after
+- [x] 4.5 False-positive guard: IDOR tests fail when PATCH owner filter is temporarily removed
+- [x] 4.6 §3 Phase 1 status in test-plan.md updated to `complete`
