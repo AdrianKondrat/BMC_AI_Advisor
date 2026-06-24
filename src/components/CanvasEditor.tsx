@@ -164,7 +164,8 @@ export default function CanvasEditor({ canvas, initialShareLink }: Props) {
       await saveBlocks(blocksRef.current);
       const res = await fetch(`/api/canvases/${canvas.id}/critique`, { method: "POST" });
       if (res.ok) {
-        setCritique((await res.json()) as CanvasCritique);
+        const critique: CanvasCritique = await res.json();
+        setCritique(critique);
         setCritiqueStatus("idle");
       } else {
         setCritiqueStatus("error");

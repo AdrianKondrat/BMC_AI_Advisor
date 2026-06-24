@@ -26,7 +26,7 @@ export default function SharePanel({ canvasId, initialShareLink }: Props) {
     try {
       const res = await fetch(`/api/canvases/${canvasId}/share`, { method: "POST" });
       if (res.ok) {
-        const data = (await res.json()) as { shareLink: ShareLink };
+        const data: { shareLink: ShareLink } = await res.json();
         setShareLink(data.shareLink);
         setStatus("idle");
       } else {
@@ -42,7 +42,7 @@ export default function SharePanel({ canvasId, initialShareLink }: Props) {
     try {
       const res = await fetch(`/api/canvases/${canvasId}/share`, { method: "PATCH" });
       if (res.ok) {
-        const data = (await res.json()) as { shareLink: ShareLink };
+        const data: { shareLink: ShareLink } = await res.json();
         setShareLink(data.shareLink);
         setStatus("idle");
       } else {

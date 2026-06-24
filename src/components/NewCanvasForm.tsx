@@ -18,12 +18,12 @@ export default function NewCanvasForm() {
         body: JSON.stringify({ idea }),
       });
       if (res.status === 201) {
-        const data = (await res.json()) as { id: string };
+        const data: { id: string } = await res.json();
         window.location.href = `/canvas/${data.id}`;
       } else {
         let msg = "Failed to generate canvas. Please try again.";
         try {
-          const err = (await res.json()) as { error?: string };
+          const err: { error?: string } = await res.json();
           if (err.error) msg = err.error;
         } catch {
           // use fallback message
