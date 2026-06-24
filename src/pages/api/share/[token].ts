@@ -29,7 +29,7 @@ export const GET: APIRoute = async ({ params }) => {
     .eq("token", token)
     .single();
 
-  if (shareError || !shareLink || isExpired(shareLink.expires_at)) {
+  if (shareError || isExpired(shareLink.expires_at)) {
     return new Response(null, { status: 404 });
   }
 
@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ params }) => {
     .eq("id", shareLink.canvas_id)
     .single();
 
-  if (canvasError || !canvas) {
+  if (canvasError) {
     return new Response(null, { status: 404 });
   }
 

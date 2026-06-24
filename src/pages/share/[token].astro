@@ -28,7 +28,7 @@ if (!token || !TOKEN_REGEX.test(token)) {
 
     const isExpired = (expiresAt: string | null) => (expiresAt ? new Date(expiresAt) < new Date() : false);
 
-    if (shareError || !shareLink || isExpired(shareLink.expires_at)) {
+    if (shareError || isExpired(shareLink.expires_at)) {
       invalid = true;
     } else {
       const { data: canvasData, error: canvasError } = await supabase
@@ -37,7 +37,7 @@ if (!token || !TOKEN_REGEX.test(token)) {
         .eq("id", shareLink.canvas_id)
         .single();
 
-      if (canvasError || !canvasData) {
+      if (canvasError) {
         invalid = true;
       } else {
         canvas = canvasData as Canvas;
