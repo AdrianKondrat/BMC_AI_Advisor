@@ -70,6 +70,15 @@ const astroConfig = tseslint.config({
   },
 });
 
+const testConfig = tseslint.config({
+  files: ["tests/**/*.ts"],
+  rules: {
+    // SELF from cloudflare:test is deprecated in favour of exports.default.fetch(),
+    // but the replacement requires complex GlobalProps setup. Suppress for tests only.
+    "@typescript-eslint/no-deprecated": "off",
+  },
+});
+
 export default tseslint.config(
   includeIgnoreFile(gitignorePath),
   { ignores: ["src/lib/database.types.ts"] },
@@ -78,5 +87,6 @@ export default tseslint.config(
   eslintPluginAstro.configs["flat/recommended"],
   ...eslintPluginAstro.configs["flat/jsx-a11y-recommended"],
   astroConfig,
+  ...testConfig,
   eslintPluginPrettier,
 );

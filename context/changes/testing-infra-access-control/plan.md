@@ -345,20 +345,20 @@ No database migrations. `SUPABASE_SERVICE_ROLE_KEY` is a new env var for the tes
 
 #### Automated
 
-- [x] 2.1 `npm run lint` passes on `tests/helpers/setup.ts` and `tests/helpers/auth.ts`
-- [x] 2.2 `npm run build && npm test` exits 0 (helpers imported without import errors)
+- [x] 2.1 `npm run lint` passes on `tests/helpers/setup.ts` and `tests/helpers/auth.ts` — fa95f39
+- [x] 2.2 `npm run build && npm test` exits 0 (helpers imported without import errors) — fa95f39
 
 #### Manual
 
-- [x] 2.3 `createTestUser` + `deleteTestUser` confirmed working against live Supabase
-- [x] 2.4 `getAuthCookies` returns a non-empty cookie string
+- [x] 2.3 `createTestUser` + `deleteTestUser` confirmed working against live Supabase — fa95f39
+- [x] 2.4 `getAuthCookies` returns a non-empty cookie string — fa95f39
 
 ### Phase 3: Risk #7 Integration Tests — Unauthenticated Redirect
 
 #### Automated
 
-- [ ] 3.1 `npm run build && npm test` reports 3 passing tests in redirect.test.ts
-- [ ] 3.2 `npm run lint` passes on redirect.test.ts
+- [x] 3.1 `npm run build && npm test` reports 3 passing tests in redirect.test.ts
+- [x] 3.2 `npm run lint` passes on redirect.test.ts
 
 #### Manual
 
