@@ -22,12 +22,18 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      - name: Write test secrets for miniflare
+        run: printf 'SUPABASE_URL=%s\nSUPABASE_KEY=%s\nOPENROUTER_API_KEY=test-dummy\n' "$SUPABASE_URL" "$SUPABASE_KEY" > dist/server/.dev.vars
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
       - name: Test
         run: npm test
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENROUTER_API_KEY: test-dummy
       - name: Deploy to Cloudflare Workers
         if: github.event_name == 'push'
         run: npx wrangler deploy
