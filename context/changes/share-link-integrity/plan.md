@@ -229,6 +229,6 @@ The guards being tested are simple boolean gates (`if (!user) return 401`, `if (
 
 #### Manual
 
-- [x] 3.1 `test-plan.md §6.3` documents the `createTestShareLink` pattern and API endpoint target
-- [x] 3.2 `test-plan.md §3` Phase 2 row shows `complete` and the change folder path
-- [x] 3.3 `change.md` shows `status: implemented`
+- [x] 3.1 `test-plan.md §6.3` documents the `createTestShareLink` pattern and API endpoint target — 253cdfd
+- [x] 3.2 `test-plan.md §3` Phase 2 row shows `complete` and the change folder path — 253cdfd
+- [x] 3.3 `change.md` shows `status: implemented` — 253cdfd
