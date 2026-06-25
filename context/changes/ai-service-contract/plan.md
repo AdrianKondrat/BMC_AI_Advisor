@@ -458,42 +458,42 @@ follow the same approach.
 
 #### Manual
 
-- [ ] 1.4 `npm test -- --reporter=verbose` shows both `workerd` and `unit` named projects
+- [x] 1.4 `npm test -- --reporter=verbose` shows both `workerd` and `unit` named projects
 
 ### Phase 2: Risk #1 — AI Service Contract Test + Zod Fix
 
 #### Automated
 
-- [x] 2.1 `npm run build && npm test` exits 0 with both new AI contract tests passing
-- [x] 2.2 `npm run lint` clean (no type errors in new test file or modified ai.ts)
-- [x] 2.3 `npm run build` succeeds with `.min(1)` change in `aiCanvasSchema`
+- [x] 2.1 `npm run build && npm test` exits 0 with both new AI contract tests passing — 00607d3
+- [x] 2.2 `npm run lint` clean (no type errors in new test file or modified ai.ts) — 00607d3
+- [x] 2.3 `npm run build` succeeds with `.min(1)` change in `aiCanvasSchema` — 00607d3
 
 #### Manual
 
-- [x] 2.4 Verbose test output shows both `ai-service-contract` tests passing individually
-- [x] 2.5 Confirm `.dev.vars` has `OPENROUTER_API_KEY` set, and CI workflow Test step has `OPENROUTER_API_KEY: test-dummy`
+- [x] 2.4 Verbose test output shows both `ai-service-contract` tests passing individually — 00607d3
+- [x] 2.5 Confirm `.dev.vars` has `OPENROUTER_API_KEY` set, and CI workflow Test step has `OPENROUTER_API_KEY: test-dummy` — 00607d3
 
 ### Phase 3: Risk #6 — React Unit Tests
 
 #### Automated
 
-- [ ] 3.1 `npm test` exits 0 with 4 unit tests passing in the `unit` project
-- [ ] 3.2 `npm run lint` clean (no TypeScript errors in new test files)
-- [ ] 3.3 All existing workerd integration tests continue to pass
+- [x] 3.1 `npm test` exits 0 with 4 unit tests passing in the `unit` project — 77d0291
+- [x] 3.2 `npm run lint` clean (no TypeScript errors in new test files) — 77d0291
+- [x] 3.3 All existing workerd integration tests continue to pass — 77d0291
 
 #### Manual
 
-- [ ] 3.4 Verbose test output shows both unit test files under the `unit` project
-- [ ] 3.5 Unit tests complete in < 2 s each (fake timers working correctly)
+- [x] 3.4 Verbose test output shows both unit test files under the `unit` project — 77d0291
+- [x] 3.5 Unit tests complete in < 2 s each (fake timers working correctly — all 4 under 100 ms) — 77d0291
 
 ### Phase 4: Cookbook + Progress Sync
 
 #### Automated
 
-- [ ] 4.1 `npm run lint` clean after `test-plan.md` edits
-- [ ] 4.2 `npm run build && npm test` still exits 0
+- [x] 4.1 `npm run lint` clean after `test-plan.md` edits
+- [x] 4.2 `npm run build && npm test` still exits 0
 
 #### Manual
 
-- [ ] 4.3 `test-plan.md §3` Phase 3 row shows `complete` and correct change folder
-- [ ] 4.4 §6.1 and §6.4 contain the documented patterns with no TBD placeholders
+- [x] 4.3 `test-plan.md §3` Phase 3 row shows `complete` and correct change folder
+- [x] 4.4 §6.1 and §6.4 contain the documented patterns with no TBD placeholders
