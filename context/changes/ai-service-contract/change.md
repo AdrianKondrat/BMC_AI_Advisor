@@ -1,7 +1,7 @@
 ---
 change_id: ai-service-contract
 title: AI service contract and error handling tests
-status: implementing
+status: implemented
 created: 2026-06-25
 updated: 2026-06-25
 archived_at: null

@@ -490,10 +490,10 @@ follow the same approach.
 
 #### Automated
 
-- [x] 4.1 `npm run lint` clean after `test-plan.md` edits
-- [x] 4.2 `npm run build && npm test` still exits 0
+- [x] 4.1 `npm run lint` clean after `test-plan.md` edits — a132358
+- [x] 4.2 `npm run build && npm test` still exits 0 — a132358
 
 #### Manual
 
-- [x] 4.3 `test-plan.md §3` Phase 3 row shows `complete` and correct change folder
-- [x] 4.4 §6.1 and §6.4 contain the documented patterns with no TBD placeholders
+- [x] 4.3 `test-plan.md §3` Phase 3 row shows `complete` and correct change folder — a132358
+- [x] 4.4 §6.1 and §6.4 contain the documented patterns with no TBD placeholders — a132358
