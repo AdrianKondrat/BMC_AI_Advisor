@@ -217,18 +217,18 @@ The guards being tested are simple boolean gates (`if (!user) return 401`, `if (
 
 #### Automated
 
-- [x] 2.1 Build succeeds and all tests pass: `npm run build && npm test`
-- [x] 2.2 Test count increases by 4; no previously-passing test fails
+- [x] 2.1 Build succeeds and all tests pass: `npm run build && npm test` — 6cec58a
+- [x] 2.2 Test count increases by 4; no previously-passing test fails — 6cec58a
 
 #### Manual
 
-- [x] 2.3 Test output shows both describe blocks with 2 passing tests each
-- [x] 2.4 Phase 1 suite (access-control.test.ts) still shows 2 passing tests
+- [x] 2.3 Test output shows both describe blocks with 2 passing tests each — 6cec58a
+- [x] 2.4 Phase 1 suite (access-control.test.ts) still shows 2 passing tests — 6cec58a
 
 ### Phase 3: Update cookbook and advance rollout state
 
 #### Manual
 
-- [ ] 3.1 `test-plan.md §6.3` documents the `createTestShareLink` pattern and API endpoint target
-- [ ] 3.2 `test-plan.md §3` Phase 2 row shows `complete` and the change folder path
-- [ ] 3.3 `change.md` shows `status: planned`
+- [x] 3.1 `test-plan.md §6.3` documents the `createTestShareLink` pattern and API endpoint target
+- [x] 3.2 `test-plan.md §3` Phase 2 row shows `complete` and the change folder path
+- [x] 3.3 `change.md` shows `status: implemented`
