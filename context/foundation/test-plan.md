@@ -78,7 +78,7 @@ orchestrator updates Status as artifacts appear on disk.
 | --- | ------------------------------------ | ------------------------------------------------------------------------ | ------------- | ----------------------------------------- | ----------- | -------------------------------------------- |
 | 1   | Test infra + access control          | Bootstrap Vitest in CI; prove auth redirect and cross-user IDOR baseline | #4, #7        | integration (API, middleware)             | complete    | context/changes/testing-infra-access-control |
 | 2   | Share link integrity                 | Prove expiry rejection and read-only enforcement at the API layer        | #2, #3        | integration (API, share route)            | complete    | context/changes/share-link-integrity         |
-| 3   | AI service contract + error handling | Prove structured 9-block output via fixture and error recovery in the UI | #1, #6        | integration (fixture mock), React unit    | not started | —                                            |
+| 3   | AI service contract + error handling | Prove structured 9-block output via fixture and error recovery in the UI | #1, #6        | integration (fixture mock), React unit    | complete    | context/changes/ai-service-contract          |
 | 4   | Data persistence + quality gates     | Round-trip block save verified; lint + typecheck + tests wired in CI     | #5            | integration (write + read-back), CI gates | not started | —                                            |
 
 ---
@@ -128,7 +128,23 @@ the relevant rollout phase ships; before that, it reads "TBD — see §3 Phase N
 
 ### 6.1 Adding a unit test (React component)
 
-TBD — see §3 Phase 3 (AI service contract + error handling, which ships the first React unit tests).
+**Test runner and project**: Vitest `unit` project — jsdom environment, includes `tests/unit/**/*.test.{ts,tsx}`.
+
+**Run command**: `npm test` (runs both projects). `npm test -- --project unit` to run unit tests only.
+
+**Fake timers**: Any component that calls `setTimeout` internally (e.g., `CanvasEditor.saveBlocks` resets `saveStatus` after 2 s) will hang the test process if real timers run. Use `vi.useFakeTimers()` in `beforeEach` and `vi.useRealTimers()` in `afterEach` for those components.
+
+**Fetch mocking**: Spy on `global.fetch` in `beforeEach`:
+
+```ts
+vi.spyOn(global, 'fetch').mockResolvedValueOnce(new Response(...))
+```
+
+Call `vi.restoreAllMocks()` in `afterEach`. Use `mockResolvedValueOnce` (not `mockResolvedValue`) to sequence multiple stubs in call order — each call consumes one stub.
+
+**Path alias**: `@/` resolves to `./src` via the jsdom project's `resolve.alias`. Import components with their full alias path, e.g. `import { NewCanvasForm } from '@/components/NewCanvasForm'`.
+
+**Reference test**: `tests/unit/CanvasEditor.test.tsx` (Phase 3 suite).
 
 ### 6.2 Adding an integration test (API endpoint)
 
@@ -173,7 +189,41 @@ TBD — see §3 Phase 3 (AI service contract + error handling, which ships the f
 
 ### 6.4 Adding a test for AI service responses
 
-TBD — see §3 Phase 3 (AI service contract + error handling, which ships the fixture-based AI mock pattern and the structured-output assertion pattern).
+**Test runner**: workerd pool — same setup as §6.2 API endpoint tests (build first, `npm run build && npm test`).
+
+**Import**: `import { fetchMock } from 'cloudflare:test'`
+
+**Setup**:
+
+```ts
+beforeAll(() => {
+  fetchMock.activate();
+  fetchMock.disableNetConnect();
+});
+afterEach(() => fetchMock.assertNoPendingInterceptors());
+afterAll(() => fetchMock.deactivate());
+```
+
+**Interceptor per test**: Register a single-use interceptor inside each `it` block (or `beforeEach`); it is consumed on the next matching call:
+
+```ts
+fetchMock
+  .get("https://openrouter.ai")
+  .intercept({ path: "/api/v1/chat/completions", method: "POST" })
+  .reply(200, body, { "Content-Type": "application/json" });
+```
+
+**Fixture body shape**:
+
+```json
+{ "choices": [{ "message": { "content": "<JSON string of name + 9 BMC keys>" } }] }
+```
+
+The `content` value must be a JSON-serialised string — `JSON.stringify({ name: '...', key_partners: '...', ... })`.
+
+**`OPENROUTER_API_KEY` requirement**: `ai.ts` throws before any fetch if `OPENROUTER_API_KEY` is falsy. Any non-empty string suffices — real calls never occur because `fetchMock.disableNetConnect()` blocks them. Add to `.dev.vars` locally and to the CI workflow Test step `env:` block as `OPENROUTER_API_KEY: test-dummy`.
+
+**Reference test**: `tests/integration/ai-service-contract.test.ts` (Phase 3 suite).
 
 ### 6.5 Per-rollout-phase notes
 
