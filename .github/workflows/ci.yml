@@ -22,6 +22,11 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      - name: Write test secrets for miniflare
+        run: printf 'SUPABASE_URL=%s\nSUPABASE_KEY=%s\nOPENROUTER_API_KEY=test-dummy\n' "$SUPABASE_URL" "$SUPABASE_KEY" > dist/server/.dev.vars
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
       - name: Test
         run: npm test
         env:

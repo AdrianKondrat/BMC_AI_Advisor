@@ -77,13 +77,6 @@ export default defineConfig({
             wrangler: {
               configPath: "./dist/server/wrangler.json",
             },
-            miniflare: {
-              vars: {
-                SUPABASE_URL: process.env.SUPABASE_URL ?? "",
-                SUPABASE_KEY: process.env.SUPABASE_KEY ?? "",
-                OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY ?? "",
-              },
-            },
           }),
         ],
         resolve: {
