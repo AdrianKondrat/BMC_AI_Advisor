@@ -226,10 +226,10 @@ future contributor doesn't have to rediscover it.
 
 #### Automated
 
-- [x] 2.1 `npm run lint` clean after `test-plan.md` edits
-- [x] 2.2 `npm run build && npm test` still exits 0
+- [x] 2.1 `npm run lint` clean after `test-plan.md` edits — a0164e7
+- [x] 2.2 `npm run build && npm test` still exits 0 — a0164e7
 
 #### Manual
 
-- [x] 2.3 `test-plan.md §3` Phase 4 row shows `complete` and correct change folder
-- [x] 2.4 `§6.5` has four phase notes with no placeholder remaining
+- [x] 2.3 `test-plan.md §3` Phase 4 row shows `complete` and correct change folder — a0164e7
+- [x] 2.4 `§6.5` has four phase notes with no placeholder remaining — a0164e7
