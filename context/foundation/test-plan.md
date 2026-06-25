@@ -74,12 +74,12 @@ Each row is a discrete rollout phase that will open its own change folder
 via `/10x-new`. Status moves left-to-right through the values below; the
 orchestrator updates Status as artifacts appear on disk.
 
-| #   | Phase name                           | Goal (one line)                                                          | Risks covered | Test types                                | Status      | Change folder                                |
-| --- | ------------------------------------ | ------------------------------------------------------------------------ | ------------- | ----------------------------------------- | ----------- | -------------------------------------------- |
-| 1   | Test infra + access control          | Bootstrap Vitest in CI; prove auth redirect and cross-user IDOR baseline | #4, #7        | integration (API, middleware)             | complete    | context/changes/testing-infra-access-control |
-| 2   | Share link integrity                 | Prove expiry rejection and read-only enforcement at the API layer        | #2, #3        | integration (API, share route)            | complete    | context/changes/share-link-integrity         |
-| 3   | AI service contract + error handling | Prove structured 9-block output via fixture and error recovery in the UI | #1, #6        | integration (fixture mock), React unit    | complete    | context/changes/ai-service-contract          |
-| 4   | Data persistence + quality gates     | Round-trip block save verified; lint + typecheck + tests wired in CI     | #5            | integration (write + read-back), CI gates | not started | —                                            |
+| #   | Phase name                           | Goal (one line)                                                          | Risks covered | Test types                                | Status   | Change folder                                  |
+| --- | ------------------------------------ | ------------------------------------------------------------------------ | ------------- | ----------------------------------------- | -------- | ---------------------------------------------- |
+| 1   | Test infra + access control          | Bootstrap Vitest in CI; prove auth redirect and cross-user IDOR baseline | #4, #7        | integration (API, middleware)             | complete | context/changes/testing-infra-access-control   |
+| 2   | Share link integrity                 | Prove expiry rejection and read-only enforcement at the API layer        | #2, #3        | integration (API, share route)            | complete | context/changes/share-link-integrity           |
+| 3   | AI service contract + error handling | Prove structured 9-block output via fixture and error recovery in the UI | #1, #6        | integration (fixture mock), React unit    | complete | context/changes/ai-service-contract            |
+| 4   | Data persistence + quality gates     | Round-trip block save verified; lint + typecheck + tests wired in CI     | #5            | integration (write + read-back), CI gates | complete | context/changes/data-persistence-quality-gates |
 
 ---
 
@@ -227,7 +227,10 @@ The `content` value must be a JSON-serialised string — `JSON.stringify({ name:
 
 ### 6.5 Per-rollout-phase notes
 
-(Filled in as phases complete — captures surprises, fixture locations, and anything a future contributor would need to know.)
+- **Phase 1 (testing-infra-access-control)**: No surprises. Established the `@cloudflare/vitest-pool-workers` workerd pool, Supabase admin-client helpers (`createTestUser`, `deleteTestUser`, `createTestCanvas`, `deleteTestCanvas`, `getAuthCookies`), and the `beforeAll`/`afterAll` fixture lifecycle that all subsequent phases reuse. Reference test: `tests/integration/access-control.test.ts`.
+- **Phase 2 (share-link-integrity)**: The public share page (`GET /share/{token}`) always returns HTTP 200 — it renders error HTML on the client side and is not an enforcement point. Tests must target the API route (`GET /api/share/{token}`), which returns 404 for expired or unknown tokens. The `share_links` table has `ON DELETE CASCADE` on `canvas_id`; do not call `deleteTestShareLink` in teardown — deleting the canvas is sufficient. Reference test: `tests/integration/share-link-integrity.test.ts`.
+- **Phase 3 (ai-service-contract)**: `CanvasEditor.saveBlocks` contains a `setTimeout` that hangs the test process if real timers run — use `vi.useFakeTimers()` in `beforeEach` and `vi.useRealTimers()` in `afterEach` for unit tests involving that component. `OPENROUTER_API_KEY` must be a non-empty string in the test environment even though `fetchMock.disableNetConnect()` prevents real calls — `ai.ts` throws before any fetch if the key is falsy. Add a dummy value to `.dev.vars` locally and to the CI workflow `env:` block. Reference tests: `tests/integration/ai-service-contract.test.ts`, `tests/unit/CanvasEditor.test.tsx`.
+- **Phase 4 (data-persistence-quality-gates)**: No `GET /api/canvases/[id]` production endpoint exists. The round-trip read-back uses `getTestCanvasBlocks(canvasId)` (admin Supabase client, reads the `blocks` JSONB column directly). The sentinel-value approach (`ROUND_TRIP_SENTINEL_<timestamp>` on `key_partners`) is sufficient because the `blocks` column is replaced wholesale on each PATCH — a silent RLS no-op leaves the original empty object in place, which fails the assertion. Reference test: `tests/integration/data-persistence.test.ts`.
 
 ---
 

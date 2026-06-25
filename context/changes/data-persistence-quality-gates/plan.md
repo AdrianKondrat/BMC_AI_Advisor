@@ -215,21 +215,21 @@ future contributor doesn't have to rediscover it.
 
 #### Automated
 
-- [x] 1.1 `npm run build && npm test` exits 0 with the new data-persistence test passing
-- [x] 1.2 `npm run lint` clean (no type errors in new test file or modified helper)
+- [x] 1.1 `npm run build && npm test` exits 0 with the new data-persistence test passing — 400c5d9
+- [x] 1.2 `npm run lint` clean (no type errors in new test file or modified helper) — 400c5d9
 
 #### Manual
 
-- [x] 1.3 Verbose output shows `data-persistence.test.ts` passing individually under the workerd project
+- [x] 1.3 Verbose output shows `data-persistence.test.ts` passing individually under the workerd project — 400c5d9
 
 ### Phase 2: Cookbook + Progress Sync
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` clean after `test-plan.md` edits
-- [ ] 2.2 `npm run build && npm test` still exits 0
+- [x] 2.1 `npm run lint` clean after `test-plan.md` edits
+- [x] 2.2 `npm run build && npm test` still exits 0
 
 #### Manual
 
-- [ ] 2.3 `test-plan.md §3` Phase 4 row shows `complete` and correct change folder
-- [ ] 2.4 `§6.5` has four phase notes with no placeholder remaining
+- [x] 2.3 `test-plan.md §3` Phase 4 row shows `complete` and correct change folder
+- [x] 2.4 `§6.5` has four phase notes with no placeholder remaining
