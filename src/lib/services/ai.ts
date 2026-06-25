@@ -35,7 +35,7 @@ const BMC_SCHEMA = {
 
 const aiCanvasShape = BMC_KEYS.reduce<z.ZodRawShape>(
   (shape, key) => {
-    shape[key] = z.string();
+    shape[key] = z.string().min(1);
     return shape;
   },
   {

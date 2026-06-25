@@ -452,9 +452,9 @@ follow the same approach.
 
 #### Automated
 
-- [x] 1.1 `npm run build && npm test` exits 0 with existing integration tests passing
-- [x] 1.2 `npm run lint` clean after vitest.config.ts restructure
-- [x] 1.3 `tests/unit/setup.ts` exists with `@testing-library/jest-dom` import
+- [x] 1.1 `npm run build && npm test` exits 0 with existing integration tests passing — 666c647
+- [x] 1.2 `npm run lint` clean after vitest.config.ts restructure — 666c647
+- [x] 1.3 `tests/unit/setup.ts` exists with `@testing-library/jest-dom` import — 666c647
 
 #### Manual
 
@@ -464,14 +464,14 @@ follow the same approach.
 
 #### Automated
 
-- [ ] 2.1 `npm run build && npm test` exits 0 with both new AI contract tests passing
-- [ ] 2.2 `npm run lint` clean (no type errors in new test file or modified ai.ts)
-- [ ] 2.3 `npm run build` succeeds with `.min(1)` change in `aiCanvasSchema`
+- [x] 2.1 `npm run build && npm test` exits 0 with both new AI contract tests passing
+- [x] 2.2 `npm run lint` clean (no type errors in new test file or modified ai.ts)
+- [x] 2.3 `npm run build` succeeds with `.min(1)` change in `aiCanvasSchema`
 
 #### Manual
 
-- [ ] 2.4 Verbose test output shows both `ai-service-contract` tests passing individually
-- [ ] 2.5 Confirm `.dev.vars` has `OPENROUTER_API_KEY` set, and CI workflow Test step has `OPENROUTER_API_KEY: test-dummy`
+- [x] 2.4 Verbose test output shows both `ai-service-contract` tests passing individually
+- [x] 2.5 Confirm `.dev.vars` has `OPENROUTER_API_KEY` set, and CI workflow Test step has `OPENROUTER_API_KEY: test-dummy`
 
 ### Phase 3: Risk #6 — React Unit Tests
 
