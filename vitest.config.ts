@@ -67,24 +67,50 @@ function supabaseCjsBundlePlugin(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [
-    supabaseCjsBundlePlugin(),
-    cloudflareTest({
-      wrangler: {
-        configPath: "./dist/server/wrangler.json",
-      },
-    }),
-  ],
-  resolve: {
-    alias: {
-      "@supabase/supabase-js": path.resolve("./node_modules/@supabase/supabase-js/dist/index.cjs"),
-      "@supabase/storage-js": path.resolve("./node_modules/@supabase/storage-js/dist/index.cjs"),
-      "@supabase/postgrest-js": path.resolve("./node_modules/@supabase/postgrest-js/dist/index.cjs"),
-    },
-  },
   test: {
-    globalSetup: ["./tests/global-setup.ts"],
-    include: ["tests/**/*.test.ts"],
     passWithNoTests: true,
+    projects: [
+      {
+        plugins: [
+          supabaseCjsBundlePlugin(),
+          cloudflareTest({
+            wrangler: {
+              configPath: "./dist/server/wrangler.json",
+            },
+          }),
+        ],
+        resolve: {
+          alias: {
+            "@supabase/supabase-js": path.resolve("./node_modules/@supabase/supabase-js/dist/index.cjs"),
+            "@supabase/storage-js": path.resolve("./node_modules/@supabase/storage-js/dist/index.cjs"),
+            "@supabase/postgrest-js": path.resolve("./node_modules/@supabase/postgrest-js/dist/index.cjs"),
+          },
+        },
+        test: {
+          name: "workerd",
+          globalSetup: ["./tests/global-setup.ts"],
+          include: ["tests/integration/**/*.test.ts"],
+          passWithNoTests: true,
+        },
+      },
+      {
+        resolve: {
+          alias: {
+            "@": path.resolve("./src"),
+          },
+        },
+        esbuild: {
+          jsx: "automatic",
+          jsxImportSource: "react",
+        },
+        test: {
+          name: "unit",
+          environment: "jsdom",
+          setupFiles: ["./tests/unit/setup.ts"],
+          include: ["tests/unit/**/*.test.{ts,tsx}"],
+          passWithNoTests: true,
+        },
+      },
+    ],
   },
 });
