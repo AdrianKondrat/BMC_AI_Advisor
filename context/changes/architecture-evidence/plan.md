@@ -148,9 +148,9 @@ No automated tests apply to documentation; static linting (markdown format) is t
 
 #### Automated
 
-- [x] 1.1 Document exists at `context/foundation/architecture.md`
-- [x] 1.2 Markdown lint passes on the document
-- [x] 1.3 All cited file paths exist and are accessible
+- [x] 1.1 Document exists at `context/foundation/architecture.md` — 0ea8f49
+- [x] 1.2 Markdown lint passes on the document — 0ea8f49
+- [x] 1.3 All cited file paths exist and are accessible — 0ea8f49
 
 #### Manual
 

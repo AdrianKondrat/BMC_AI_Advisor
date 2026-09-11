@@ -1,7 +1,7 @@
 ---
 change_id: architecture-evidence
 title: One-page architecture and quality-gate document
-status: implementing
+status: implemented
 created: 2026-09-11
 updated: 2026-09-11
 archived_at: null
