@@ -48,6 +48,12 @@ export async function canvasExists(canvasId: string): Promise<boolean> {
   return data !== null;
 }
 
+export async function getTestCanvasBlocks(canvasId: string): Promise<Record<string, string> | null> {
+  const { data, error } = await getAdmin().from("canvases").select("blocks").eq("id", canvasId).maybeSingle();
+  if (error) throw new Error(`getTestCanvasBlocks failed: ${error.message}`);
+  return data === null ? null : (data.blocks as Record<string, string>);
+}
+
 export async function createTestShareLink(
   canvasId: string,
   expiresAt: string | null = null,
