@@ -69,7 +69,7 @@ When this plan is complete:
 
 **Session termination after deletion**: The `/api/auth/delete-account` endpoint deletes the user from auth.users, which terminates their session. After the POST succeeds, the client-side code must redirect (the session is already invalid). The redirect happens before the user can see any stale session state.
 
-**Admin client configuration**: The `createAdminClient()` function in `src/lib/supabase.ts` must have access to `SUPABASE_SERVICE_ROLE_KEY`. Locally, this is set via `.dev.vars`. In production, it's a Cloudflare secret set via `wrangler secret put`. If the secret is missing, the endpoint returns a 500 "Server configuration error".
+**Admin client configuration**: The `createAdminClient()` function in `src/lib/supabase.ts` must have access to `SUPABASE_SERVICE_ROLE_KEY`. Locally, this is set via `.dev.vars`. In production, it's a Cloudflare secret set via `npx wrangler secret put`. If the secret is missing, the endpoint returns a 500 "Server configuration error".
 
 **Checkbox state management**: The DeleteAccountButton must manage local React state for the checkbox (boolean). The delete button is disabled until the checkbox is true. This prevents accidental deletions if the user clicks the button without reading the confirmation.
 
@@ -463,7 +463,7 @@ Retrieve the key from your Supabase project settings (Service Role key, not the 
 **Contract**: After this plan is approved, run:
 
 ```bash
-wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
 ```
 
 Paste the key from Supabase. The secret is then available to the Worker at runtime via `Env` (already handled by `createAdminClient()` in the codebase). Verify by deploying and testing the deletion flow on the live app.
@@ -481,7 +481,7 @@ Paste the key from Supabase. The secret is then available to the Worker at runti
 
 - Local testing: set `.dev.vars` with service role key, navigate to `/settings`, create a test account, run the deletion flow, verify account is gone from dashboard
 - Verify cascade: check that canvases and share_links for the deleted user are also gone
-- Production readiness: after merging, follow the secret setup documentation to run `wrangler secret put` and test the flow on the live app
+- Production readiness: after merging, follow the secret setup documentation to run `npx wrangler secret put` and test the flow on the live app
 
 ---
 
@@ -599,5 +599,5 @@ No data migration required. The endpoint works on existing users. The `/settings
 - [ ] 4.6 Local testing with `.dev.vars` secret: create account, navigate to settings, delete account (dev server running on http://localhost:4323)
 - [ ] 4.7 Verify user, canvases, and share_links are all deleted from Supabase
 - [ ] 4.8 Verify redirect and sign-in deletion notice appear
-- [ ] 4.9 After merge: run `wrangler secret put SUPABASE_SERVICE_ROLE_KEY` in production
+- [ ] 4.9 After merge: run `npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY` in production
 - [ ] 4.10 Production verification: test deletion flow on live app
