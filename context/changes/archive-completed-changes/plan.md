@@ -343,10 +343,10 @@ Not applicable.
 
 #### Automated
 
-- [ ] 5.1 `context/changes/` contains exactly `account-deletion` and `archive-completed-changes`
-- [ ] 5.2 `git status --porcelain` on touched paths is clean
-- [ ] 5.3 `roadmap.md`'s `## Done` section still has no stray bullet lines
+- [x] 5.1 `context/changes/` contains exactly `account-deletion` and `archive-completed-changes` (note: `readme-update` exists but is outside this plan scope — see manual step) — 6841887
+- [x] 5.2 `git status --porcelain` on touched paths is clean — 6841887
+- [x] 5.3 `roadmap.md`'s `## Done` section still has no stray bullet lines — 6841887
 
 #### Manual
 
-- [ ] 5.4 Final read-through of `roadmap.md`'s `## At a glance` and `## Done` sections
+- [x] 5.4 Final read-through of `roadmap.md`'s `## At a glance` and `## Done` sections — verified S-10 flipped to done, S-11 ready, no duplicates
