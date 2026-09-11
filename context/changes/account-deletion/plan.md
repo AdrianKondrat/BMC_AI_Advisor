@@ -588,11 +588,11 @@ No data migration required. The endpoint works on existing users. The `/settings
 
 #### Automated
 
-- [x] 4.1 Integration test written for cascade delete
-- [x] 4.2 Integration test passes: `npm test`
-- [x] 4.3 Lint passes: `npm run lint`
-- [x] 4.4 Build succeeds: `npm run build`
-- [x] 4.5 Type checking passes: `npx astro check` (pre-existing test infrastructure issues, not blocking)
+- [x] 4.1 Integration test written for cascade delete — 5b6bd29
+- [x] 4.2 Integration test passes: `npm test` — 5b6bd29
+- [x] 4.3 Lint passes: `npm run lint` — 5b6bd29
+- [x] 4.4 Build succeeds: `npm run build` — 5b6bd29
+- [x] 4.5 Type checking passes: `npx astro check` (pre-existing test infrastructure issues, not blocking) — 5b6bd29
 
 #### Manual
 
