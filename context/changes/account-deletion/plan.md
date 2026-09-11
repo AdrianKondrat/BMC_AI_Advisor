@@ -538,28 +538,28 @@ No data migration required. The endpoint works on existing users. The `/settings
 
 #### Automated
 
-- [x] 1.1 Middleware protection (add `/settings` to PROTECTED_ROUTES)
-- [x] 1.2 Settings page created (`src/pages/settings.astro`)
-- [x] 1.3 Dashboard settings link added
-- [x] 1.4 Lint passes: `npm run lint`
-- [x] 1.5 Build succeeds: `npm run build`
-- [x] 1.6 Type checking passes: `npm run typecheck`
+- [x] 1.1 Middleware protection (add `/settings` to PROTECTED_ROUTES) — 3ddfaad
+- [x] 1.2 Settings page created (`src/pages/settings.astro`) — 3ddfaad
+- [x] 1.3 Dashboard settings link added — 3ddfaad
+- [x] 1.4 Lint passes: `npm run lint` — 3ddfaad
+- [x] 1.5 Build succeeds: `npm run build` — 3ddfaad
+- [x] 1.6 Type checking passes: `npm run typecheck` — 3ddfaad
 
 #### Manual
 
-- [ ] 1.7 Authenticate and navigate to `/settings` → page loads with user email and "Account" heading
-- [ ] 1.8 Navigate to `/settings` unauthenticated → redirect to sign-in
-- [ ] 1.9 Click "Settings" on dashboard → navigate to `/settings`
+- [x] 1.7 Authenticate and navigate to `/settings` → page loads with user email and "Account" heading — 3ddfaad
+- [x] 1.8 Navigate to `/settings` unauthenticated → redirect to sign-in — 3ddfaad
+- [x] 1.9 Click "Settings" on dashboard → navigate to `/settings` — 3ddfaad
 
 ### Phase 2: DeleteAccountButton Component
 
 #### Automated
 
-- [ ] 2.1 DeleteAccountButton component created
-- [ ] 2.2 Component imports and renders in settings page
-- [ ] 2.3 Lint passes: `npm run lint`
-- [ ] 2.4 Build succeeds: `npm run build`
-- [ ] 2.5 Type checking passes: `npm run typecheck`
+- [x] 2.1 DeleteAccountButton component created
+- [x] 2.2 Component imports and renders in settings page
+- [x] 2.3 Lint passes: `npm run lint`
+- [x] 2.4 Build succeeds: `npm run build`
+- [x] 2.5 Type checking passes: `npm run typecheck`
 
 #### Manual
 
