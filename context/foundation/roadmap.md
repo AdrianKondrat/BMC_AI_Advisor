@@ -38,11 +38,11 @@ The product's distinguishing trait — the one capability that, if removed, make
 | S-02 | s-02                      | input a plain-text idea, trigger AI fill of all 9 BMC blocks, edit any block, and see the canvas auto-saved | F-01, S-01    | FR-003, FR-006, FR-007, FR-008, US-01 | done   |
 | S-03 | ai-critique               | trigger AI critique of their canvas and see block-level feedback                                            | S-02          | FR-010, US-02                         | done   |
 | S-04 | s-04                      | generate a read-only share link with optional expiry and share it with anyone                               | S-02          | FR-011, FR-012, US-03                 | done   |
-| S-05 | account-deletion          | permanently delete their account and all associated data                                                    | F-01          | FR-013                                | ready  |
+| S-05 | account-deletion          | permanently delete their account and all associated data                                                    | F-01          | FR-013                                | done   |
 | S-06 | edit-idea-regenerate      | edit the idea text on an existing canvas and trigger full AI regeneration of all 9 blocks                   | F-01, S-02    | FR-014, FR-006, FR-007                | ready  |
 | S-07 | product-landing-page      | discover the product on a purpose-built landing page and navigate to sign-up or sign-in                     | —             | FR-015                                | done   |
 | S-08 | readme-update             | read an accurate README describing the project, its purpose, setup, and usage                               | —             | FR-016                                | ready  |
-| S-09 | agent-hooks               | (quality) agent edits of source files are lint-checked immediately, with failing output fed back            | —             | test-plan §4                          | ready  |
+| S-09 | agent-hooks               | (quality) agent edits of source files are lint-checked immediately, with failing output fed back            | —             | test-plan §4                          | done   |
 | S-10 | architecture-evidence     | (quality) a reviewer can read one document covering tests, gates, hardening, and AI contracts               | —             | test-plan, lessons.md                 | ready  |
 | S-11 | archive-completed-changes | (quality) completed change folders live under archive; `context/changes/` holds only in-flight work         | —             | —                                     | ready  |
 | S-12 | ci-cd-evidence            | (quality) a reviewer can read how lint, build, tests, and production deploy run on every push and PR        | —             | infrastructure.md                     | ready  |
@@ -165,7 +165,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Unknowns:**
   - Does Supabase's auth admin API (service role key) need a new secret in the Cloudflare Worker runtime? — Owner: user. Block: no (known implementation path; service role key follows the same pattern as `SUPABASE_KEY`). Production secret still needs `wrangler secret put`.
 - **Risk:** irreversible action — the UI must require explicit confirmation before deletion proceeds. Cascade is already on FKs (`auth.users` → canvases → share_links). The service role key must remain server-side. Partial backend exists; shipping the API without the settings UI would leave an unreachable endpoint.
-- **Status:** ready
+- **Status:** done
 - **Implementation brief:** Execute `context/changes/account-deletion/plan.md`. Remaining work is the `/settings` page, `DeleteAccountButton` with checkbox confirmation, middleware entry for `/settings`, dashboard link, sign-in `?deleted=true` notice, and the Cloudflare secret. Do not re-plan from scratch.
 
 ### S-06: Edit initial idea and regenerate canvas
@@ -221,7 +221,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** a slow per-edit hook blocks every save. Keep the handler to ESLint on the touched file; scoped Vitest only on `src/lib/**` and `src/pages/api/**`. Full typecheck and full suite stay at commit/CI.
-- **Status:** ready
+- **Status:** done
 - **Implementation brief:** Add `.cursor/hooks.json` with a `PostToolUse` matcher for `Write|Edit`. Shell handler: ESLint on `tool_input.file_path`; if the path is a risk area, `npx vitest related <file> --run`. Exit 2 on failure. Do not migrate husky to Lefthook.
 
 ### S-10: Architecture evidence
@@ -315,11 +315,13 @@ Resolved this revision:
 
 ## Done
 
-| ID   | Change ID            | Completed  | Notes                                                           |
-| ---- | -------------------- | ---------- | --------------------------------------------------------------- |
-| F-01 | canvas-schema        | 2026-06-07 | Canvas, share_links tables + RLS; GitHub issue #1               |
-| S-01 | canvas-dashboard     | 2026-06-08 | Canvas list and delete, empty state, RLS; GitHub issue #2       |
-| S-02 | s-02                 | 2026-06-11 | AI fill, block edit, auto-save; GitHub issue #3                 |
-| S-03 | ai-critique          | 2026-06-13 | Block-level critique with gap classification; GitHub issue #4   |
-| S-04 | s-04                 | 2026-06-14 | Read-only share link with expiry; PIN deferred; GitHub issue #5 |
-| S-07 | product-landing-page | 2026-09-11 | Hero, feature cards, and CTAs; cosmic layout; responsive design |
+| ID   | Change ID            | Completed  | Notes                                                                      |
+| ---- | -------------------- | ---------- | -------------------------------------------------------------------------- |
+| F-01 | canvas-schema        | 2026-06-07 | Canvas, share_links tables + RLS; GitHub issue #1                          |
+| S-01 | canvas-dashboard     | 2026-06-08 | Canvas list and delete, empty state, RLS; GitHub issue #2                  |
+| S-02 | s-02                 | 2026-06-11 | AI fill, block edit, auto-save; GitHub issue #3                            |
+| S-03 | ai-critique          | 2026-06-13 | Block-level critique with gap classification; GitHub issue #4              |
+| S-04 | s-04                 | 2026-06-14 | Read-only share link with expiry; PIN deferred; GitHub issue #5            |
+| S-05 | account-deletion     | 2026-09-11 | Settings page, DeleteAccountButton, cascade deletion, confirmation UI      |
+| S-07 | product-landing-page | 2026-09-11 | Hero, feature cards, and CTAs; cosmic layout; responsive design            |
+| S-09 | agent-hooks          | 2026-09-11 | Per-edit ESLint hook; scoped Vitest on risk-area files; immediate feedback |
