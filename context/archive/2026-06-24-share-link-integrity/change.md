@@ -1,10 +1,10 @@
 ---
 change_id: share-link-integrity
 title: Share link integrity — Phase 2 test rollout
-status: implemented
+status: archived
 created: 2026-06-24
-updated: 2026-06-25
-archived_at: null
+updated: 2026-09-11
+archived_at: 2026-09-11T20:17:23Z
 ---
 
 ## Notes
