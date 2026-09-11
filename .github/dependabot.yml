@@ -1,0 +1,32 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+    groups:
+      development:
+        dependency-type: "dev"
+        patterns:
+          - "@eslint*"
+          - "@types/*"
+          - "@testing-library/*"
+          - "prettier*"
+          - "vitest*"
+          - "typescript*"
+      all-updates:
+        patterns: ["*"]
+    auto-merge:
+      - match:
+          dependency-type: "dev"
+          update-type: ["patch", "minor"]
+        automerge-strategy: "auto"
+    open-pull-requests-limit: 1
+    pull-request-branch-name:
+      separator: "/"
+    reviewers:
+      - "adriankondrat"
+    assignees:
+      - "adriankondrat"
