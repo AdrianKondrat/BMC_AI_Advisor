@@ -323,14 +323,14 @@ Not applicable.
 
 #### Automated
 
-- [ ] 3.1 All 7 folders (`canvas-schema`, `canvas-dashboard`, `s-02`, `ai-critique`, `s-04`, `agent-hooks`, `product-landing-page`, `architecture-evidence`) moved to `context/archive/*-<name>/`
-- [ ] 3.2 No stray bullet lines appended under `roadmap.md`'s `## Done` heading
-- [ ] 3.3 S-10 flipped to `done` in the `## At a glance` table
-- [ ] 3.4 `git log` shows 8 new `chore(archive): close` commits from this phase
+- [x] 3.1 All 7 folders (`canvas-schema`, `canvas-dashboard`, `s-02`, `ai-critique`, `s-04`, `agent-hooks`, `product-landing-page`, `architecture-evidence`) moved to `context/archive/*-<name>/` — 5d8d136
+- [x] 3.2 No stray bullet lines appended under `roadmap.md`'s `## Done` heading — 63030ff
+- [x] 3.3 S-10 flipped to `done` in the `## At a glance` table — 63030ff
+- [x] 3.4 `git log` shows 8 new `chore(archive): close` commits from this phase
 
 #### Manual
 
-- [ ] 3.5 `roadmap.md`'s `## At a glance` and `## Done` tables spot-checked — no duplicate rows, no malformed markdown
+- [x] 3.5 `roadmap.md`'s `## At a glance` and `## Done` tables spot-checked — no duplicate rows, no malformed markdown
 
 ### Phase 4: Manual archive — bootstrap-verification
 

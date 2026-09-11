@@ -43,7 +43,7 @@ The product's distinguishing trait — the one capability that, if removed, make
 | S-07 | product-landing-page      | discover the product on a purpose-built landing page and navigate to sign-up or sign-in                     | —             | FR-015                                | done   |
 | S-08 | readme-update             | read an accurate README describing the project, its purpose, setup, and usage                               | —             | FR-016                                | ready  |
 | S-09 | agent-hooks               | (quality) agent edits of source files are lint-checked immediately, with failing output fed back            | —             | test-plan §4                          | done   |
-| S-10 | architecture-evidence     | (quality) a reviewer can read one document covering tests, gates, hardening, and AI contracts               | —             | test-plan, lessons.md                 | ready  |
+| S-10 | architecture-evidence     | (quality) a reviewer can read one document covering tests, gates, hardening, and AI contracts               | —             | test-plan, lessons.md                 | done   |
 | S-11 | archive-completed-changes | (quality) completed change folders live under archive; `context/changes/` holds only in-flight work         | —             | —                                     | ready  |
 | S-12 | ci-cd-evidence            | (quality) a reviewer can read how lint, build, tests, and production deploy run on every push and PR        | —             | infrastructure.md                     | ready  |
 | S-13 | dependabot                | (quality) npm dependency updates arrive as pull requests instead of silent drift                            | —             | —                                     | ready  |
@@ -234,7 +234,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Blockers:** —
 - **Unknowns:** —
 - **Risk:** a long essay hides the signal. Cap at one page. Link out to test-plan and impl-reviews rather than duplicating them.
-- **Status:** ready
+- **Status:** done
 - **Implementation brief:** Create `context/foundation/architecture.md` with: system sketch; auth + RLS; AI fill/critique contract (strict JSON schema, 9 keys); test-plan phases 1–4 and the user-visible risks they cover; gates (eslint, vitest, husky, CI); share-link expiry and read-only enforcement. Cite files, do not paste code dumps.
 
 ### S-11: Archive completed changes
