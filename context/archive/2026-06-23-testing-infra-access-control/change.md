@@ -1,10 +1,10 @@
 ---
 change_id: testing-infra-access-control
 title: Test infra and access control (Phase 1 rollout)
-status: implemented
+status: archived
 created: 2026-06-23
-updated: 2026-06-24
-archived_at: null
+updated: 2026-09-11
+archived_at: 2026-09-11T20:17:23Z
 ---
 
 ## Notes
