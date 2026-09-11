@@ -1,10 +1,10 @@
 ---
 change_id: canvas-dashboard
 title: Canvas list and delete — founder dashboard
-status: impl_reviewed
+status: archived
 created: 2026-06-07
-updated: 2026-06-08
-archived_at: null
+updated: 2026-09-11
+archived_at: 2026-09-11T20:17:23Z
 ---
 
 ## Notes
