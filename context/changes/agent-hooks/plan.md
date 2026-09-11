@@ -182,12 +182,12 @@ Not applicable — no data or schema changes; this plan only adds hook configura
 
 #### Automated
 
-- [x] 2.1 `bash -n scripts/test-staged-risk.sh` passes
-- [x] 2.2 `scripts/test-staged-risk.sh` is executable
-- [x] 2.3 `npm run lint` still passes
-- [x] 2.4 Staged `src/lib/services/ai.ts` change triggers a passing build + scoped `vitest related` run via `npx lint-staged`
+- [x] 2.1 `bash -n scripts/test-staged-risk.sh` passes — 49dae25
+- [x] 2.2 `scripts/test-staged-risk.sh` is executable — 49dae25
+- [x] 2.3 `npm run lint` still passes — 49dae25
+- [x] 2.4 Staged `src/lib/services/ai.ts` change triggers a passing build + scoped `vitest related` run via `npx lint-staged` — 49dae25
 
 #### Manual
 
-- [x] 2.5 Breaking change under `src/pages/api/**` blocks `git commit`
-- [x] 2.6 Unrelated staged file (`README.md`) commits fast with no build triggered
+- [x] 2.5 Breaking change under `src/pages/api/**` blocks `git commit` — 49dae25
+- [x] 2.6 Unrelated staged file (`README.md`) commits fast with no build triggered — 49dae25

@@ -1,7 +1,7 @@
 ---
 change_id: agent-hooks
 title: Per-edit lint and scoped test hooks for agent file edits
-status: implementing
+status: implemented
 created: 2026-09-11
 updated: 2026-09-11
 archived_at: null
