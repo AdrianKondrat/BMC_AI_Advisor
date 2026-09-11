@@ -307,17 +307,17 @@ Not applicable.
 
 #### Automated
 
-- [x] 1.1 `git status --porcelain context/changes/share-link-integrity/` produces no output
+- [x] 1.1 `git status --porcelain context/changes/share-link-integrity/` produces no output — c0a2c97
 
 ### Phase 2: Archive — no roadmap match (safe, no roadmap side effects)
 
 #### Automated
 
-- [ ] 2.1 `testing-infra-access-control` moved to `context/archive/*-testing-infra-access-control/`
-- [ ] 2.2 `ai-service-contract` moved to `context/archive/*-ai-service-contract/`
-- [ ] 2.3 `data-persistence-quality-gates` moved to `context/archive/*-data-persistence-quality-gates/`
-- [ ] 2.4 `share-link-integrity` moved to `context/archive/*-share-link-integrity/`
-- [ ] 2.5 `git log` shows 4 new `chore(archive): close` commits from this phase
+- [x] 2.1 `testing-infra-access-control` moved to `context/archive/*-testing-infra-access-control/` — df714cc
+- [x] 2.2 `ai-service-contract` moved to `context/archive/*-ai-service-contract/` — 32c8907
+- [x] 2.3 `data-persistence-quality-gates` moved to `context/archive/*-data-persistence-quality-gates/` — 36241a3
+- [x] 2.4 `share-link-integrity` moved to `context/archive/*-share-link-integrity/` — b02ffa3
+- [x] 2.5 `git log` shows 4 new `chore(archive): close` commits from this phase
 
 ### Phase 3: Archive — already done in roadmap (idempotent roadmap edits)
 
