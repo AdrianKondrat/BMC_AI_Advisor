@@ -1,10 +1,10 @@
 ---
 change_id: canvas-schema
 title: Define canvas, blocks, and share-link schema with RLS
-status: impl_reviewed
+status: archived
 created: 2026-06-07
-updated: 2026-06-07
-archived_at: null
+updated: 2026-09-11
+archived_at: 2026-09-11T20:17:23Z
 ---
 
 ## Notes
