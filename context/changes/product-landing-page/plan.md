@@ -182,28 +182,28 @@ Ensure the landing page integrates smoothly with the existing app, test all navi
 
 #### Automated
 
-- [x] 1.1 TypeScript compiles without errors
-- [x] 1.2 Build succeeds
-- [x] 1.3 No console errors in dev server
+- [x] 1.1 TypeScript compiles without errors — 7c9646a
+- [x] 1.2 Build succeeds — 7c9646a
+- [x] 1.3 No console errors in dev server — 7c9646a
 
 #### Manual
 
-- [x] 1.4 Landing page renders and is readable
-- [x] 1.5 Sign-in and sign-up buttons navigate correctly
-- [x] 1.6 Page is responsive on mobile and desktop
-- [x] 1.7 Styling is consistent with app design
+- [x] 1.4 Landing page renders and is readable — 7c9646a
+- [x] 1.5 Sign-in and sign-up buttons navigate correctly — 7c9646a
+- [x] 1.6 Page is responsive on mobile and desktop — 7c9646a
+- [x] 1.7 Styling is consistent with app design — 7c9646a
 
 ### Phase 2: Integration & Verification
 
 #### Automated
 
-- [ ] 2.1 Build succeeds
-- [ ] 2.2 Lint/TypeScript passes
-- [ ] 2.3 No new console errors
+- [x] 2.1 Build succeeds
+- [x] 2.2 Lint/TypeScript passes
+- [x] 2.3 No new console errors
 
 #### Manual
 
-- [ ] 2.4 Navigation flows work (sign-in, sign-up, back to landing)
-- [ ] 2.5 No broken images or missing styling
-- [ ] 2.6 Page performs well (reasonable load time)
-- [ ] 2.7 Authenticated users can see landing page without redirect
+- [x] 2.4 Navigation flows work (sign-in, sign-up, back to landing)
+- [x] 2.5 No broken images or missing styling
+- [x] 2.6 Page performs well (reasonable load time)
+- [x] 2.7 Authenticated users can see landing page without redirect
