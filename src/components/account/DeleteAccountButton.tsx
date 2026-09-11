@@ -31,8 +31,10 @@ export default function DeleteAccountButton() {
       if (!response.ok) {
         let errorMsg = "Failed to delete account";
         try {
-          const data = (await response.json()) as Record<string, unknown>;
-          if (typeof data.error === "string") {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          const data = await response.json();
+          if (typeof data?.error === "string") {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             errorMsg = data.error;
           }
         } catch {

@@ -555,11 +555,11 @@ No data migration required. The endpoint works on existing users. The `/settings
 
 #### Automated
 
-- [x] 2.1 DeleteAccountButton component created
-- [x] 2.2 Component imports and renders in settings page
-- [x] 2.3 Lint passes: `npm run lint`
-- [x] 2.4 Build succeeds: `npm run build`
-- [x] 2.5 Type checking passes: `npm run typecheck`
+- [x] 2.1 DeleteAccountButton component created — bfbe48b
+- [x] 2.2 Component imports and renders in settings page — bfbe48b
+- [x] 2.3 Lint passes: `npm run lint` — bfbe48b
+- [x] 2.4 Build succeeds: `npm run build` — bfbe48b
+- [x] 2.5 Type checking passes: `npm run typecheck` — bfbe48b
 
 #### Manual
 
@@ -573,10 +573,10 @@ No data migration required. The endpoint works on existing users. The `/settings
 
 #### Automated
 
-- [ ] 3.1 Sign-in page updated to read `deleted` param
-- [ ] 3.2 Lint passes: `npm run lint`
-- [ ] 3.3 Build succeeds: `npm run build`
-- [ ] 3.4 Type checking passes: `npm run typecheck`
+- [x] 3.1 Sign-in page updated to read `deleted` param
+- [x] 3.2 Lint passes: `npm run lint`
+- [x] 3.3 Build succeeds: `npm run build`
+- [x] 3.4 Type checking passes: `npm run typecheck`
 
 #### Manual
 
