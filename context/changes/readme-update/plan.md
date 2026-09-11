@@ -98,14 +98,14 @@ No code snippets needed — structure is clear from existing docs, and setup ste
 
 #### Automated
 
-- [x] 1.1 Write README.md with all sections
-- [x] 1.2 `npm run lint` passes (Prettier + ESLint on markdown)
+- [x] 1.1 Write README.md with all sections — df714cc
+- [x] 1.2 `npm run lint` passes (Prettier + ESLint on markdown) — df714cc
 
 #### Manual
 
-- [x] 1.3 Problem/solution opening is clear and compelling
-- [x] 1.4 Feature list reflects shipped features only (no unshipped work mentioned)
-- [x] 1.5 Local setup instructions are comprehensive and tested against current codebase
-- [x] 1.6 Deploy instructions match CI/CD reality
-- [x] 1.7 All links to context/foundation files work and point to the right sections
-- [x] 1.8 Tone is welcoming and professional (no jargon, clear for both devs and founders)
+- [x] 1.3 Problem/solution opening is clear and compelling — df714cc
+- [x] 1.4 Feature list reflects shipped features only (no unshipped work mentioned) — df714cc
+- [x] 1.5 Local setup instructions are comprehensive and tested against current codebase — df714cc
+- [x] 1.6 Deploy instructions match CI/CD reality — df714cc
+- [x] 1.7 All links to context/foundation files work and point to the right sections — df714cc
+- [x] 1.8 Tone is welcoming and professional (no jargon, clear for both devs and founders) — df714cc
