@@ -197,13 +197,13 @@ Ensure the landing page integrates smoothly with the existing app, test all navi
 
 #### Automated
 
-- [x] 2.1 Build succeeds
-- [x] 2.2 Lint/TypeScript passes
-- [x] 2.3 No new console errors
+- [x] 2.1 Build succeeds — af75c2f
+- [x] 2.2 Lint/TypeScript passes — af75c2f
+- [x] 2.3 No new console errors — af75c2f
 
 #### Manual
 
-- [x] 2.4 Navigation flows work (sign-in, sign-up, back to landing)
-- [x] 2.5 No broken images or missing styling
-- [x] 2.6 Page performs well (reasonable load time)
-- [x] 2.7 Authenticated users can see landing page without redirect
+- [x] 2.4 Navigation flows work (sign-in, sign-up, back to landing) — af75c2f
+- [x] 2.5 No broken images or missing styling — af75c2f
+- [x] 2.6 Page performs well (reasonable load time) — af75c2f
+- [x] 2.7 Authenticated users can see landing page without redirect — af75c2f
