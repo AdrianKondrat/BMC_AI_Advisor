@@ -170,24 +170,24 @@ Not applicable — no data or schema changes; this plan only adds hook configura
 
 #### Automated
 
-- [x] 1.1 `.claude/settings.json` is valid JSON
-- [x] 1.2 `npx vitest related src/components/NewCanvasForm.tsx --run --project unit` succeeds
+- [x] 1.1 `.claude/settings.json` is valid JSON — 1b7b8b5
+- [x] 1.2 `npx vitest related src/components/NewCanvasForm.tsx --run --project unit` succeeds — 1b7b8b5
 
 #### Manual
 
-- [x] 1.3 Failing component edit blocks the hook with exit 2 and visible Vitest output
-- [x] 1.4 Non-matching edit (`src/lib/utils.ts`) does not trigger the new test step
+- [x] 1.3 Failing component edit blocks the hook with exit 2 and visible Vitest output — 1b7b8b5
+- [x] 1.4 Non-matching edit (`src/lib/utils.ts`) does not trigger the new test step — 1b7b8b5
 
 ### Phase 2: Pre-commit risk-area integration test gate
 
 #### Automated
 
-- [ ] 2.1 `bash -n scripts/test-staged-risk.sh` passes
-- [ ] 2.2 `scripts/test-staged-risk.sh` is executable
-- [ ] 2.3 `npm run lint` still passes
-- [ ] 2.4 Staged `src/lib/services/ai.ts` change triggers a passing build + scoped `vitest related` run via `npx lint-staged`
+- [x] 2.1 `bash -n scripts/test-staged-risk.sh` passes
+- [x] 2.2 `scripts/test-staged-risk.sh` is executable
+- [x] 2.3 `npm run lint` still passes
+- [x] 2.4 Staged `src/lib/services/ai.ts` change triggers a passing build + scoped `vitest related` run via `npx lint-staged`
 
 #### Manual
 
-- [ ] 2.5 Breaking change under `src/pages/api/**` blocks `git commit`
-- [ ] 2.6 Unrelated staged file (`README.md`) commits fast with no build triggered
+- [x] 2.5 Breaking change under `src/pages/api/**` blocks `git commit`
+- [x] 2.6 Unrelated staged file (`README.md`) commits fast with no build triggered
