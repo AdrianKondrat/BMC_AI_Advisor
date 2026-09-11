@@ -336,8 +336,8 @@ Not applicable.
 
 #### Automated
 
-- [ ] 4.1 `context/changes/bootstrap-verification/` no longer exists
-- [ ] 4.2 `context/archive/2026-05-30-bootstrap-verification/verification.md` exists
+- [x] 4.1 `context/changes/bootstrap-verification/` no longer exists — ac0e5f8
+- [x] 4.2 `context/archive/2026-05-30-bootstrap-verification/verification.md` exists — ac0e5f8
 
 ### Phase 5: Verify final state
 
